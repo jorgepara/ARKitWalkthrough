@@ -9,51 +9,19 @@
 import Foundation
 import ARKit
 
-internal typealias UpdateSceneDebugOptions = (ARSCNDebugOptions) -> Void
-internal typealias UpdateSceneConfiguration = (ARConfiguration) -> Void
+/// View model for showcase of debug options
+internal class DebugViewModel: ARViewModel {
 
-/// View model for the main view controller
-internal class ViewModel {
+    lazy var configuration: ARConfiguration = {
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        return configuration
+    }()
 
-    var updateSceneDebugOptions: UpdateSceneDebugOptions?
-    var updateSceneConfiguration: UpdateSceneConfiguration?
-    var configuration: ARConfiguration = ARWorldTrackingConfiguration()
     var sessionOptions: ARSession.RunOptions = [.removeExistingAnchors]
+    var debugOptions: ARSCNDebugOptions = [.showWorldOrigin, .showFeaturePoints]
 
-    private var debugOptions: ARSCNDebugOptions = []
-
-
-    /// Allows enabling and disabling world origin marker in the AR scene
-    ///
-    /// - Parameter enabled: true if the world origin should be shown, otherwise false
-    func showWorldOrigin(_ enabled: Bool) { sendNewDebugOptions(enabled: enabled, option: .showWorldOrigin) }
-
-
-    /// Allows enabling and disabling showing feature points in the AR scene
-    ///
-    /// - Parameter enabled: true if the feature points should be shown, otherwise false
-    func showFeaturePoints(_ enabled: Bool) { sendNewDebugOptions(enabled: enabled, option: .showFeaturePoints) }
-
-    private func sendNewDebugOptions(enabled: Bool, option: ARSCNDebugOptions) {
-        if enabled {
-            debugOptions.insert(option)
-        } else {
-            debugOptions.remove(option)
-        }
-        updateSceneDebugOptions?(debugOptions)
-    }
-
-
-    /// Allows enabling and disabling showing horizontal planes
-    ///
-    /// - Parameter enabled: true if the horizontal planes should be shown, otherwise false
-    func showPlanes(_ enabled: Bool) {
-        let worldTrackingConfiguration = ARWorldTrackingConfiguration()
-        if enabled {
-            worldTrackingConfiguration.planeDetection = .horizontal
-        }
-        updateSceneConfiguration?(worldTrackingConfiguration)
-    }
+    var sceneUpdateQueue: DispatchQueue? = nil
 
     /// Invoked when a new anchor is added to the scene
     ///
@@ -77,7 +45,9 @@ internal class ViewModel {
         planeNode.position = SCNVector3(x,y,z)
         planeNode.eulerAngles.x = -.pi / 2
 
-        node.addChildNode(planeNode)
+        sceneUpdateQueue?.async {
+            node.addChildNode(planeNode)
+        }
     }
 
     /// Invoked when an existing anchor is updated in the scene
