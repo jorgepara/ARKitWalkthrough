@@ -23,7 +23,7 @@ internal class ARViewController: UIViewController {
 
     private let sceneUpdateQueue = DispatchQueue(label: "SerialSceneKitQueue")
 
-    internal var viewModel: ARViewModel
+    var viewModel: ARViewModel
 
     // MARK: - Init
     

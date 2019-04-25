@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  MainViewController+Extensions.swift
 //  ARKitWalkthrough
 //
 //  Created by Para Molina, Jorge (Cognizant) on 4/22/19.
@@ -7,12 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-enum MyTest {
-
-}
-
-internal class Coordinator {
+internal extension MainViewController {
 
     enum State: String, CaseIterable {
         case Debug = "1"
@@ -20,9 +17,9 @@ internal class Coordinator {
         case CoordinateSpaces = "3"
     }
 
-    static let InitialState = State.allCases.first ?? .Debug
+    static let InitialState: State = .Debug
 
-    func viewControllerFor(state: State) -> ARViewController? {
+    func makeViewControllerFor(state: State) -> ARViewController? {
         switch state {
         case .Debug:
             return DebugViewController(viewModel: DebugViewModel())
@@ -33,4 +30,13 @@ internal class Coordinator {
         }
     }
 
+}
+
+internal extension MainViewController {
+    struct Constants {
+        static let buttonVerticalMargin: CGFloat = 40
+        static let buttonLeftMargin: CGFloat = 10
+        static let buttonSize: CGFloat = 45
+        static let buttonSpacing: CGFloat = 20
+    }
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    private let coordinator = Coordinator()
-
     private lazy var stackStates: UIStackView = {
         let stackView = UIStackView(frame: .zero)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +20,7 @@ class MainViewController: UIViewController {
         return stackView
     }()
 
-    private var stateIndexes: [Coordinator.State:Int] = [:]
+    private var stateIndexes: [State:Int] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +33,12 @@ class MainViewController: UIViewController {
             stackStates.widthAnchor.constraint(equalToConstant: Constants.buttonSize)
             ])
 
-        Coordinator.State.allCases.enumerated().forEach { addButtonForState($1, withIndex: $0) }
+        State.allCases.enumerated().forEach { addButtonForState($1, withIndex: $0) }
 
-        updateState(Coordinator.InitialState)
+        updateState(MainViewController.InitialState)
     }
 
-    private func addButtonForState( _ state: Coordinator.State, withIndex index: Int) {
+    private func addButtonForState( _ state: State, withIndex index: Int) {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(state.rawValue, for: .normal)
@@ -66,7 +64,7 @@ class MainViewController: UIViewController {
         }
     }
 
-    private func updateState(_ state: Coordinator.State) {
+    private func updateState(_ state: State) {
 
         stackStates.arrangedSubviews.filter {$0 is UIButton}.forEach {
             if stateIndexes[state] == $0.tag {
@@ -76,7 +74,7 @@ class MainViewController: UIViewController {
             }
         }
 
-        guard let viewController = coordinator.viewControllerFor(state: state) else { return }
+        guard let viewController = makeViewControllerFor(state: state) else { return }
 
         children.forEach {
             $0.removeFromParent()
@@ -89,19 +87,4 @@ class MainViewController: UIViewController {
 
         view.bringSubviewToFront(stackStates)
     }
-}
-
-private extension MainViewController {
-    struct Constants {
-        static let buttonVerticalMargin: CGFloat = 40
-        static let buttonLeftMargin: CGFloat = 10
-        static let buttonSize: CGFloat = 45
-        static let buttonSpacing: CGFloat = 20
-    }
-}
-
-private extension UIColor {
-
-    static let deselectedState = UIColor.darkGray.withAlphaComponent(0.4)
-    static let selectedState = UIColor.init(red: 0.098039215686275, green: 0.23921568627451, blue: 0.556862745098039, alpha: 0.7)
 }
