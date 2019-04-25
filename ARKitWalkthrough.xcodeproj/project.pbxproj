@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3523949B226E1AA9000D880A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523949A226E1AA9000D880A /* Coordinator.swift */; };
-		3523949D226E1D4D000D880A /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523949C226E1D4D000D880A /* State.swift */; };
 		352394A0226F1913000D880A /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523949F226F1913000D880A /* ARViewController.swift */; };
 		352394A2226F21A3000D880A /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A1226F21A3000D880A /* ARViewModel.swift */; };
 		352394A4226F244C000D880A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A3226F244C000D880A /* MainViewController.swift */; };
@@ -20,6 +19,9 @@
 		352A496F2244C66600E2E0CB /* ARKitWalkthroughTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A496E2244C66600E2E0CB /* ARKitWalkthroughTests.swift */; };
 		352A497B2244C6A100E2E0CB /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A497A2244C6A100E2E0CB /* ARKit.framework */; };
 		352A497D2244C98200E2E0CB /* DebugViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugViewModel.swift */; };
+		35E1000C2271EA9500BBBD28 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000B2271EA9500BBBD28 /* TrackingViewController.swift */; };
+		35E1000E2271EAC000BBBD28 /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingViewModel.swift */; };
+		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		3523949A226E1AA9000D880A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		3523949C226E1D4D000D880A /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		3523949F226F1913000D880A /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		352394A1226F21A3000D880A /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 		352394A3226F244C000D880A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +51,9 @@
 		352A49702244C66600E2E0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		352A497A2244C6A100E2E0CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		352A497C2244C98200E2E0CB /* DebugViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewModel.swift; sourceTree = "<group>"; };
+		35E1000B2271EA9500BBBD28 /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
+		35E1000D2271EAC000BBBD28 /* TrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
+		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,10 +110,11 @@
 				352A495D2244C66400E2E0CB /* Main.storyboard */,
 				352394A3226F244C000D880A /* MainViewController.swift */,
 				3523949A226E1AA9000D880A /* Coordinator.swift */,
-				3523949C226E1D4D000D880A /* State.swift */,
 				3523949F226F1913000D880A /* ARViewController.swift */,
 				352394A1226F21A3000D880A /* ARViewModel.swift */,
 				352394A5226F2A5D000D880A /* Debug */,
+				35E1000A2271EA4F00BBBD28 /* Tracking */,
+				35E100112271ED8100BBBD28 /* resources */,
 				352A49602244C66600E2E0CB /* Assets.xcassets */,
 				352A49622244C66600E2E0CB /* LaunchScreen.storyboard */,
 				352A49652244C66600E2E0CB /* Info.plist */,
@@ -132,6 +137,23 @@
 				352A497A2244C6A100E2E0CB /* ARKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35E1000A2271EA4F00BBBD28 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				35E1000B2271EA9500BBBD28 /* TrackingViewController.swift */,
+				35E1000D2271EAC000BBBD28 /* TrackingViewModel.swift */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
+		35E100112271ED8100BBBD28 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				352A49642244C66600E2E0CB /* LaunchScreen.storyboard in Resources */,
+				35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */,
 				352A49612244C66600E2E0CB /* Assets.xcassets in Resources */,
 				352A495F2244C66400E2E0CB /* Main.storyboard in Resources */,
 			);
@@ -237,14 +260,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35E1000C2271EA9500BBBD28 /* TrackingViewController.swift in Sources */,
 				352394A2226F21A3000D880A /* ARViewModel.swift in Sources */,
 				3523949B226E1AA9000D880A /* Coordinator.swift in Sources */,
 				352A495C2244C66400E2E0CB /* DebugViewController.swift in Sources */,
 				352A497D2244C98200E2E0CB /* DebugViewModel.swift in Sources */,
 				352394A0226F1913000D880A /* ARViewController.swift in Sources */,
-				3523949D226E1D4D000D880A /* State.swift in Sources */,
 				352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */,
 				352394A4226F244C000D880A /* MainViewController.swift in Sources */,
+				35E1000E2271EAC000BBBD28 /* TrackingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

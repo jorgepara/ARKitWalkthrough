@@ -8,69 +8,31 @@
 
 import Foundation
 
+enum MyTest {
+
+}
+
 internal class Coordinator {
+
+    enum State: String, CaseIterable {
+        case Debug = "1"
+        case Tracking = "2"
+        case CoordinateSpaces = "3"
+    }
 
     static let InitialState = State.allCases.first ?? .Debug
 
-    private var currentState = InitialState
-
-    func next() -> Bool {
-        if let next = State.allCases.after(currentState) {
-            currentState = next
-            return true
-        }
-        return false
-    }
-
-    func previous() -> Bool {
-        if let previous = State.allCases.before(currentState) {
-            currentState = previous
-            return true
-        }
-        return false
-    }
+    var currentState = InitialState
 
     func viewControllerForCurrentState() -> ARViewController? {
         switch currentState {
         case .Debug:
             return DebugViewController(viewModel: DebugViewModel())
+        case .Tracking:
+            return TrackingViewController(viewModel: TrackingViewModel())
         default:
             return nil
         }
     }
 
 }
-
-// From https://stackoverflow.com/questions/45340536/get-next-or-previous-item-to-an-object-in-a-swift-collection-or-array
-private extension BidirectionalCollection where Iterator.Element: Equatable {
-    typealias Element = Self.Iterator.Element
-
-    func after(_ item: Element, loop: Bool = false) -> Element? {
-        if let itemIndex = self.firstIndex(of: item) {
-            let lastItem: Bool = (index(after:itemIndex) == endIndex)
-            if loop && lastItem {
-                return self.first
-            } else if lastItem {
-                return nil
-            } else {
-                return self[index(after:itemIndex)]
-            }
-        }
-        return nil
-    }
-
-    func before(_ item: Element, loop: Bool = false) -> Element? {
-        if let itemIndex = self.firstIndex(of: item) {
-            let firstItem: Bool = (itemIndex == startIndex)
-            if loop && firstItem {
-                return self.last
-            } else if firstItem {
-                return nil
-            } else {
-                return self[index(before:itemIndex)]
-            }
-        }
-        return nil
-    }
-}
-
