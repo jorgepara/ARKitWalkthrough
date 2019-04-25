@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
         return stackView
     }()
 
-    private var stateIndexes: [Int:Coordinator.State] = [:]
+    private var stateIndexes: [Coordinator.State:Int] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +41,6 @@ class MainViewController: UIViewController {
     }
 
     private func addButtonForState( _ state: Coordinator.State, withIndex index: Int) {
-        // TODO: add "selected" background color
-        // TODO: add action
-        // TODO: remove next and previous from coordinator and add set state instead
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(state.rawValue, for: .normal)
@@ -58,27 +55,28 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(tapState(sender:)), for: .touchUpInside)
 
         button.tag = index
-        stateIndexes[index] = state
+        stateIndexes[state] = index
 
         stackStates.addArrangedSubview(button)
     }
 
     @objc private func tapState(sender: UIButton!) {
-        if let state = stateIndexes[sender.tag] {
-            stackStates.arrangedSubviews.filter {$0 is UIButton}.forEach {
-                if $0 != sender {
-                    $0.backgroundColor = UIColor.deselectedState
-                }
-            }
-            sender.backgroundColor = UIColor.selectedState
+        if let state = stateIndexes.keys.filter ( { stateIndexes[$0] == sender.tag } ).first {
             updateState(state)
         }
     }
 
     private func updateState(_ state: Coordinator.State) {
-        coordinator.currentState = state
 
-        guard let viewController = coordinator.viewControllerForCurrentState() else { return }
+        stackStates.arrangedSubviews.filter {$0 is UIButton}.forEach {
+            if stateIndexes[state] == $0.tag {
+                $0.backgroundColor = UIColor.selectedState
+            } else {
+                $0.backgroundColor = UIColor.deselectedState
+            }
+        }
+
+        guard let viewController = coordinator.viewControllerFor(state: state) else { return }
 
         children.forEach {
             $0.removeFromParent()

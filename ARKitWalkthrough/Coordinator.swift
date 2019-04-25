@@ -22,10 +22,8 @@ internal class Coordinator {
 
     static let InitialState = State.allCases.first ?? .Debug
 
-    var currentState = InitialState
-
-    func viewControllerForCurrentState() -> ARViewController? {
-        switch currentState {
+    func viewControllerFor(state: State) -> ARViewController? {
+        switch state {
         case .Debug:
             return DebugViewController(viewModel: DebugViewModel())
         case .Tracking:
