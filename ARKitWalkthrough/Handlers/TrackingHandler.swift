@@ -1,5 +1,5 @@
 //
-//  TrackingViewModel.swift
+//  TrackingHandler.swift
 //  ARKitWalkthrough
 //
 //  Created by Para Molina, Jorge (Cognizant) on 4/25/19.
@@ -9,7 +9,8 @@
 import Foundation
 import ARKit
 
-internal class TrackingViewModel: ARViewModel {
+/// AR handler for showcase of tracking of an image
+internal class TrackingHandler: ARHandler {
 
     lazy var configuration: ARConfiguration = {
         let configuration = ARWorldTrackingConfiguration()

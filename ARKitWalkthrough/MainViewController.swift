@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
 
     private var stateIndexes: [State:Int] = [:]
 
+    private var arViewController: ARViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +36,11 @@ class MainViewController: UIViewController {
             ])
 
         State.allCases.enumerated().forEach { addButtonForState($1, withIndex: $0) }
+
+        arViewController = ARViewController()
+        addChild(arViewController)
+        view.addSubview(arViewController.view)
+        arViewController.didMove(toParent: self)
 
         updateState(MainViewController.InitialState)
     }
@@ -65,7 +72,6 @@ class MainViewController: UIViewController {
     }
 
     private func updateState(_ state: State) {
-
         stackStates.arrangedSubviews.filter {$0 is UIButton}.forEach {
             if stateIndexes[state] == $0.tag {
                 $0.backgroundColor = UIColor.selectedState
@@ -74,17 +80,7 @@ class MainViewController: UIViewController {
             }
         }
 
-        guard let viewController = makeViewControllerFor(state: state) else { return }
-
-        children.forEach {
-            $0.removeFromParent()
-            $0.view.removeFromSuperview()
-        }
-
-        addChild(viewController)
-        view.addSubview(viewController.view)
-        viewController.didMove(toParent: self)
-
+        arViewController.handler = makeHandlerFor(state: state)
         view.bringSubviewToFront(stackStates)
     }
 }

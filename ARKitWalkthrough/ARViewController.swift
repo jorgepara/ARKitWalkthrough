@@ -10,31 +10,27 @@ import Foundation
 import UIKit
 import ARKit
 
-/// Base view controller for AR, it will manage the basics of the lifecycle of the scene
+/// View controller for AR scene, it will manage the basics of the lifecycle of the scene
 internal class ARViewController: UIViewController {
 
     private lazy var scene: ARSCNView = {
         let scene = ARSCNView(frame: .zero)
         scene.translatesAutoresizingMaskIntoConstraints = false
-        scene.debugOptions = viewModel.debugOptions
+        scene.debugOptions = handler?.debugOptions ?? []
         scene.delegate = self
         return scene
     }()
 
     private let sceneUpdateQueue = DispatchQueue(label: "SerialSceneKitQueue")
 
-    var viewModel: ARViewModel
-
-    // MARK: - Init
-    
-    init(viewModel: ARViewModel) {
-        self.viewModel = viewModel
-        self.viewModel.sceneUpdateQueue = sceneUpdateQueue
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var handler: ARHandler? {
+        didSet {
+            if var handler = self.handler {
+                handler.sceneUpdateQueue = sceneUpdateQueue
+                scene.debugOptions = handler.debugOptions
+                scene.session.run(handler.configuration, options: handler.sessionOptions)
+            }
+        }
     }
 
     // MARK: - Lifecycle
@@ -42,16 +38,20 @@ internal class ARViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scene)
-        scene.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        scene.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        scene.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        scene.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            scene.heightAnchor.constraint(equalTo: view.heightAnchor),
+            scene.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scene.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scene.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        scene.session.run(viewModel.configuration, options: viewModel.sessionOptions)
+        if let handler = self.handler {
+            scene.session.run(handler.configuration, options: handler.sessionOptions)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,13 +62,45 @@ internal class ARViewController: UIViewController {
 
 }
 
+internal extension MainViewController {
+
+    enum State: String, CaseIterable {
+        case Debug = "1"
+        case Tracking = "2"
+        case CoordinateSpaces = "3"
+    }
+
+    static let InitialState: State = .Debug
+
+    func makeHandlerFor(state: State) -> ARHandler? {
+        switch state {
+        case .Debug:
+            return DebugHandler()
+        case .Tracking:
+            return TrackingHandler()
+        default:
+            return nil
+        }
+    }
+
+}
+
+internal extension MainViewController {
+    struct Constants {
+        static let buttonVerticalMargin: CGFloat = 40
+        static let buttonLeftMargin: CGFloat = 10
+        static let buttonSize: CGFloat = 45
+        static let buttonSpacing: CGFloat = 20
+    }
+}
+
 extension ARViewController: ARSCNViewDelegate {
 
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        viewModel.anchorWasAdded(withAnchor: anchor, node: node)
+        handler?.anchorWasAdded(withAnchor: anchor, node: node)
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        viewModel.anchorWasUpdated(withAnchor: anchor, node: node)
+        handler?.anchorWasUpdated(withAnchor: anchor, node: node)
     }
 }

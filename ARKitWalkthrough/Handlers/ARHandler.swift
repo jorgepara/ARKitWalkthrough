@@ -1,5 +1,5 @@
 //
-//  ARViewModel.swift
+//  ARHandler.swift
 //  ARKitWalkthrough
 //
 //  Created by Para Molina, Jorge (Cognizant) on 4/23/19.
@@ -9,7 +9,7 @@
 import Foundation
 import ARKit
 
-internal protocol ARViewModel {
+internal protocol ARHandler {
 
     var configuration: ARConfiguration { get }
     var sessionOptions: ARSession.RunOptions { get }

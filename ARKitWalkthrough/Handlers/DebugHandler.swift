@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  DebugHandler.swift
 //  ARKitWalkthrough
 //
 //  Created by Para Molina, Jorge (Cognizant) on 3/22/19.
@@ -9,8 +9,8 @@
 import Foundation
 import ARKit
 
-/// View model for showcase of debug options
-internal class DebugViewModel: ARViewModel {
+/// AR handler for showcase of debug options
+internal class DebugHandler: ARHandler {
 
     lazy var configuration: ARConfiguration = {
         let configuration = ARWorldTrackingConfiguration()

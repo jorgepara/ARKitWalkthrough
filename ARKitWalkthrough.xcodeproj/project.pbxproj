@@ -7,20 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3523949B226E1AA9000D880A /* MainViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523949A226E1AA9000D880A /* MainViewController+Extensions.swift */; };
 		352394A0226F1913000D880A /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523949F226F1913000D880A /* ARViewController.swift */; };
-		352394A2226F21A3000D880A /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A1226F21A3000D880A /* ARViewModel.swift */; };
+		352394A2226F21A3000D880A /* ARHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A1226F21A3000D880A /* ARHandler.swift */; };
 		352394A4226F244C000D880A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A3226F244C000D880A /* MainViewController.swift */; };
 		352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A49592244C66400E2E0CB /* AppDelegate.swift */; };
-		352A495C2244C66400E2E0CB /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A495B2244C66400E2E0CB /* DebugViewController.swift */; };
 		352A495F2244C66400E2E0CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352A495D2244C66400E2E0CB /* Main.storyboard */; };
 		352A49612244C66600E2E0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 352A49602244C66600E2E0CB /* Assets.xcassets */; };
 		352A49642244C66600E2E0CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352A49622244C66600E2E0CB /* LaunchScreen.storyboard */; };
 		352A496F2244C66600E2E0CB /* ARKitWalkthroughTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A496E2244C66600E2E0CB /* ARKitWalkthroughTests.swift */; };
 		352A497B2244C6A100E2E0CB /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A497A2244C6A100E2E0CB /* ARKit.framework */; };
-		352A497D2244C98200E2E0CB /* DebugViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugViewModel.swift */; };
-		35E1000C2271EA9500BBBD28 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000B2271EA9500BBBD28 /* TrackingViewController.swift */; };
-		35E1000E2271EAC000BBBD28 /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingViewModel.swift */; };
+		352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugHandler.swift */; };
+		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
 		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
 		35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -36,13 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3523949A226E1AA9000D880A /* MainViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3523949F226F1913000D880A /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
-		352394A1226F21A3000D880A /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
+		352394A1226F21A3000D880A /* ARHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARHandler.swift; sourceTree = "<group>"; };
 		352394A3226F244C000D880A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		352A49562244C66400E2E0CB /* ARKitWalkthrough.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitWalkthrough.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		352A49592244C66400E2E0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		352A495B2244C66400E2E0CB /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		352A495E2244C66400E2E0CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		352A49602244C66600E2E0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		352A49632244C66600E2E0CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,9 +46,8 @@
 		352A496E2244C66600E2E0CB /* ARKitWalkthroughTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitWalkthroughTests.swift; sourceTree = "<group>"; };
 		352A49702244C66600E2E0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		352A497A2244C6A100E2E0CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
-		352A497C2244C98200E2E0CB /* DebugViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewModel.swift; sourceTree = "<group>"; };
-		35E1000B2271EA9500BBBD28 /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
-		35E1000D2271EAC000BBBD28 /* TrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
+		352A497C2244C98200E2E0CB /* DebugHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHandler.swift; sourceTree = "<group>"; };
+		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
 		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
 		35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,15 +71,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		352394A5226F2A5D000D880A /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				352A495B2244C66400E2E0CB /* DebugViewController.swift */,
-				352A497C2244C98200E2E0CB /* DebugViewModel.swift */,
-			);
-			path = Debug;
-			sourceTree = "<group>";
-		};
 		352A494D2244C66400E2E0CB = {
 			isa = PBXGroup;
 			children = (
@@ -112,9 +97,7 @@
 				352A495D2244C66400E2E0CB /* Main.storyboard */,
 				352394A3226F244C000D880A /* MainViewController.swift */,
 				3523949F226F1913000D880A /* ARViewController.swift */,
-				352394A1226F21A3000D880A /* ARViewModel.swift */,
-				352394A5226F2A5D000D880A /* Debug */,
-				35E1000A2271EA4F00BBBD28 /* Tracking */,
+				35E100152272DBEE00BBBD28 /* Handlers */,
 				35E1001222721E4300BBBD28 /* Extensions */,
 				35E100112271ED8100BBBD28 /* resources */,
 				352A49602244C66600E2E0CB /* Assets.xcassets */,
@@ -141,15 +124,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		35E1000A2271EA4F00BBBD28 /* Tracking */ = {
-			isa = PBXGroup;
-			children = (
-				35E1000B2271EA9500BBBD28 /* TrackingViewController.swift */,
-				35E1000D2271EAC000BBBD28 /* TrackingViewModel.swift */,
-			);
-			path = Tracking;
-			sourceTree = "<group>";
-		};
 		35E100112271ED8100BBBD28 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,10 +135,19 @@
 		35E1001222721E4300BBBD28 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3523949A226E1AA9000D880A /* MainViewController+Extensions.swift */,
 				35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		35E100152272DBEE00BBBD28 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				352394A1226F21A3000D880A /* ARHandler.swift */,
+				352A497C2244C98200E2E0CB /* DebugHandler.swift */,
+				35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */,
+			);
+			path = Handlers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,16 +254,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35E1000C2271EA9500BBBD28 /* TrackingViewController.swift in Sources */,
 				35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */,
-				352394A2226F21A3000D880A /* ARViewModel.swift in Sources */,
-				3523949B226E1AA9000D880A /* MainViewController+Extensions.swift in Sources */,
-				352A495C2244C66400E2E0CB /* DebugViewController.swift in Sources */,
-				352A497D2244C98200E2E0CB /* DebugViewModel.swift in Sources */,
+				352394A2226F21A3000D880A /* ARHandler.swift in Sources */,
+				352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */,
 				352394A0226F1913000D880A /* ARViewController.swift in Sources */,
 				352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */,
 				352394A4226F244C000D880A /* MainViewController.swift in Sources */,
-				35E1000E2271EAC000BBBD28 /* TrackingViewModel.swift in Sources */,
+				35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K2DHJK8V2P;
 				INFOPLIST_FILE = ARKitWalkthrough/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -451,6 +431,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cognizant.cdbintspain.ARKitWalkthrough;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -460,7 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K2DHJK8V2P;
 				INFOPLIST_FILE = ARKitWalkthrough/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -469,6 +450,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cognizant.cdbintspain.ARKitWalkthrough;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
