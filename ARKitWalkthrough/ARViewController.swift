@@ -11,6 +11,7 @@ import UIKit
 import ARKit
 
 /// View controller for AR scene, it will manage the basics of the lifecycle of the scene
+/// and will rely on a handler for the configuration and event management
 internal class ARViewController: UIViewController {
 
     private lazy var scene: ARSCNView = {
@@ -21,6 +22,7 @@ internal class ARViewController: UIViewController {
         return scene
     }()
 
+    // This dispatch queue can be used by the handlers for updating the scene
     private let sceneUpdateQueue = DispatchQueue(label: "SerialSceneKitQueue")
 
     var handler: ARHandler? {
@@ -60,38 +62,6 @@ internal class ARViewController: UIViewController {
         scene.session.pause()
     }
 
-}
-
-internal extension MainViewController {
-
-    enum State: String, CaseIterable {
-        case Debug = "1"
-        case Tracking = "2"
-        case CoordinateSpaces = "3"
-    }
-
-    static let InitialState: State = .Debug
-
-    func makeHandlerFor(state: State) -> ARHandler? {
-        switch state {
-        case .Debug:
-            return DebugHandler()
-        case .Tracking:
-            return TrackingHandler()
-        default:
-            return nil
-        }
-    }
-
-}
-
-internal extension MainViewController {
-    struct Constants {
-        static let buttonVerticalMargin: CGFloat = 40
-        static let buttonLeftMargin: CGFloat = 10
-        static let buttonSize: CGFloat = 45
-        static let buttonSpacing: CGFloat = 20
-    }
 }
 
 extension ARViewController: ARSCNViewDelegate {

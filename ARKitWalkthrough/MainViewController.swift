@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Main view controller of the app. It hosts the view controller with the AR scene
+// together with the UIKit views used to browse the content of walkthrough
 class MainViewController: UIViewController {
 
     private lazy var stackStates: UIStackView = {
@@ -45,6 +47,13 @@ class MainViewController: UIViewController {
         updateState(MainViewController.InitialState)
     }
 
+
+    /// Add to the state stack view a button for the given state, in the order
+    /// corresponding to the given index
+    ///
+    /// - Parameters:
+    ///   - state: the state represented by the button
+    ///   - index: the index of the button within the list of states
     private func addButtonForState( _ state: State, withIndex index: Int) {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -65,12 +74,16 @@ class MainViewController: UIViewController {
         stackStates.addArrangedSubview(button)
     }
 
+    /// Tapping in a button representing a state will switch to that state
     @objc private func tapState(sender: UIButton!) {
         if let state = stateIndexes.keys.filter ( { stateIndexes[$0] == sender.tag } ).first {
             updateState(state)
         }
     }
 
+    /// When updating the state, the background color of the buttons representing the states
+    /// is updated to highlight only the new state, and a new handler is created and injected
+    /// in the AR view controller
     private func updateState(_ state: State) {
         stackStates.arrangedSubviews.filter {$0 is UIButton}.forEach {
             if stateIndexes[state] == $0.tag {
@@ -82,5 +95,38 @@ class MainViewController: UIViewController {
 
         arViewController.handler = makeHandlerFor(state: state)
         view.bringSubviewToFront(stackStates)
+    }
+}
+
+internal extension MainViewController {
+
+    // These are the possible states of the AR walkthrough
+    enum State: String, CaseIterable {
+        case Debug = "1"
+        case Tracking = "2"
+        case CoordinateSpaces = "3"
+    }
+
+    static let InitialState: State = .Debug
+
+    func makeHandlerFor(state: State) -> ARHandler? {
+        switch state {
+        case .Debug:
+            return DebugHandler()
+        case .Tracking:
+            return TrackingHandler()
+        default:
+            return nil
+        }
+    }
+
+}
+
+internal extension MainViewController {
+    struct Constants {
+        static let buttonVerticalMargin: CGFloat = 40
+        static let buttonLeftMargin: CGFloat = 10
+        static let buttonSize: CGFloat = 45
+        static let buttonSpacing: CGFloat = 20
     }
 }

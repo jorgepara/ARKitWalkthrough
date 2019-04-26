@@ -9,6 +9,8 @@
 import Foundation
 import ARKit
 
+/// Protocol for the AR handlers that will define the configuration
+/// of the AR scene and the behavior for event management
 internal protocol ARHandler {
 
     var configuration: ARConfiguration { get }
@@ -17,7 +19,17 @@ internal protocol ARHandler {
     var sceneUpdateQueue: DispatchQueue? { get set }
 
 
+    /// Invoked when a new anchor is added to the scene
+    ///
+    /// - Parameters:
+    ///   - anchor: anchor that was added
+    ///   - node: node created for the new anchor
     func anchorWasAdded(withAnchor anchor: ARAnchor, node: SCNNode)
+    /// Invoked when an existing anchor is updated in the scene
+    ///
+    /// - Parameters:
+    ///   - anchor: anchor that was updated
+    ///   - node: node for the  anchor
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode)
 
 }

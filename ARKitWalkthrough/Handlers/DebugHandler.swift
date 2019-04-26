@@ -23,11 +23,6 @@ internal class DebugHandler: ARHandler {
 
     var sceneUpdateQueue: DispatchQueue? = nil
 
-    /// Invoked when a new anchor is added to the scene
-    ///
-    /// - Parameters:
-    ///   - anchor: anchor that was added
-    ///   - node: node created for the new anchor
     func anchorWasAdded(withAnchor anchor: ARAnchor, node: SCNNode) {
 
         // Check the anchor corresponds to a plane and if so, draw a plane in the scene with same dimensions and position
@@ -50,11 +45,6 @@ internal class DebugHandler: ARHandler {
         }
     }
 
-    /// Invoked when an existing anchor is updated in the scene
-    ///
-    /// - Parameters:
-    ///   - anchor: anchor that was updated
-    ///   - node: node for the  anchor
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode) {
 
         guard let planeAnchor = anchor as?  ARPlaneAnchor,
