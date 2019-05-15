@@ -20,7 +20,7 @@ internal class MatricesHandler: ARHandler {
 
     lazy var cupNode: SCNNode = {
         let cylinder = SCNCylinder(radius: 0.05, height: 0.1)
-        cylinder.materials.first?.diffuse.contents = UIColor.blue
+        cylinder.materials.first?.diffuse.contents = UIImage(named: "logo_cognizant.jpg") ?? UIColor.blue
         let cupNode = SCNNode(geometry: cylinder)
         cupNode.simdTransform = initialTransformation
         return cupNode
@@ -130,16 +130,16 @@ internal class MatricesHandler: ARHandler {
         var rotation = matrix_identity_float4x4
         if sender.isSelected {
             rotation = simd_float4x4(
-                float4(1, 0, 0, 0),
-                float4(0, cos(-radians), -sin(-radians), 0),
-                float4(0, sin(-radians), cos(-radians), 0),
+                float4(cos(-radians), 0, sin(-radians), 0),
+                float4(0, 1, 0, 0),
+                float4(-sin(-radians), 0, cos(-radians), 0),
                 float4(0, 0, 0, 1)
             )
         } else {
             rotation = simd_float4x4(
-                float4(1, 0, 0, 0),
-                float4(0, cos(radians), -sin(radians), 0),
-                float4(0, sin(radians), cos(radians), 0),
+                float4(cos(radians), 0, sin(radians), 0),
+                float4(0, 1, 0, 0),
+                float4(-sin(radians), 0, cos(radians), 0),
                 float4(0, 0, 0, 1)
             )
         }
