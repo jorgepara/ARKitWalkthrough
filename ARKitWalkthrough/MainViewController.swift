@@ -22,6 +22,16 @@ class MainViewController: UIViewController {
         return stackView
     }()
 
+    private lazy var stackSupplementaryViews: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.spacing = Constants.supplementaryViewSpacing
+        stackView.distribution = UIStackView.Distribution.equalCentering
+        stackView.axis = .horizontal
+        return stackView
+    }()
+
     private var stateIndexes: [State:Int] = [:]
 
     private var arViewController: ARViewController!
@@ -38,6 +48,14 @@ class MainViewController: UIViewController {
             ])
 
         State.allCases.enumerated().forEach { addButtonForState($1, withIndex: $0) }
+
+        view.addSubview(stackSupplementaryViews)
+        NSLayoutConstraint.activate([
+            stackSupplementaryViews.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.supplementaryViewLateralMargin),
+            stackSupplementaryViews.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.supplementaryViewLateralMargin),
+            stackSupplementaryViews.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackSupplementaryViews.heightAnchor.constraint(equalToConstant: Constants.supplementaryViewHeight)
+            ])
 
         arViewController = ARViewController()
         addChild(arViewController)
@@ -94,7 +112,13 @@ class MainViewController: UIViewController {
         }
 
         arViewController.handler = makeHandlerFor(state: state)
+
+        stackSupplementaryViews.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        // TODO: this is a form of feature envy.
+        arViewController.handler?.supplementaryOnScreenViews()?.forEach { stackSupplementaryViews.addArrangedSubview($0) }
+
         view.bringSubviewToFront(stackStates)
+        view.bringSubviewToFront(stackSupplementaryViews)
     }
 }
 
@@ -129,7 +153,10 @@ internal extension MainViewController {
     struct Constants {
         static let buttonVerticalMargin: CGFloat = 40
         static let buttonLeftMargin: CGFloat = 10
-        static let buttonSize: CGFloat = 45
+        static let buttonSize: CGFloat = 50
         static let buttonSpacing: CGFloat = 20
+        static let supplementaryViewSpacing: CGFloat = 15
+        static let supplementaryViewLateralMargin: CGFloat = 220
+        static let supplementaryViewHeight: CGFloat = 60
     }
 }

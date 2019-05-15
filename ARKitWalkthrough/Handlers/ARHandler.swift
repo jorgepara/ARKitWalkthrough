@@ -36,11 +36,13 @@ internal protocol ARHandler {
     /// - Parameter results: results of the hit test
     func tappedWithHitTestResults(_ results: [SCNHitTestResult])
 
+    func supplementaryOnScreenViews() -> [UIView]?
 }
 
 internal extension ARHandler {
 
     func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {}
+    func supplementaryOnScreenViews() -> [UIView]? { return nil }
 
 }
 
