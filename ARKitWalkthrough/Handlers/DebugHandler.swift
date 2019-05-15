@@ -25,20 +25,9 @@ internal class DebugHandler: ARHandler {
 
     func anchorWasAdded(withAnchor anchor: ARAnchor, node: SCNNode) {
 
-        // Check the anchor corresponds to a plane and if so, draw a plane in the scene with same dimensions and position
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
 
-        let width = CGFloat(planeAnchor.extent.x)
-        let height = CGFloat(planeAnchor.extent.z)
-        let plane = SCNPlane(width: width, height: height)
-        plane.materials.first?.diffuse.contents = UIColor.lightGray.withAlphaComponent(0.2)
-
-        let planeNode = SCNNode(geometry: plane)
-        let x = CGFloat(planeAnchor.center.x)
-        let y = CGFloat(planeAnchor.center.y)
-        let z = CGFloat(planeAnchor.center.z)
-        planeNode.position = SCNVector3(x,y,z)
-        planeNode.eulerAngles.x = -.pi / 2
+        let planeNode = planeAnchor.nodeRepresentation()
 
         sceneUpdateQueue?.async {
             node.addChildNode(planeNode)

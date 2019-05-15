@@ -17,6 +17,8 @@
 		352A496F2244C66600E2E0CB /* ARKitWalkthroughTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A496E2244C66600E2E0CB /* ARKitWalkthroughTests.swift */; };
 		352A497B2244C6A100E2E0CB /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A497A2244C6A100E2E0CB /* ARKit.framework */; };
 		352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugHandler.swift */; };
+		356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */; };
+		35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC8992228BC9D0009D80AC /* MatricesHandler.swift */; };
 		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
 		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
 		35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */; };
@@ -47,6 +49,8 @@
 		352A49702244C66600E2E0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		352A497A2244C6A100E2E0CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		352A497C2244C98200E2E0CB /* DebugHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHandler.swift; sourceTree = "<group>"; };
+		356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARPlaneAnchor+Extensions.swift"; sourceTree = "<group>"; };
+		35AC8992228BC9D0009D80AC /* MatricesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesHandler.swift; sourceTree = "<group>"; };
 		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
 		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
 		35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */,
+				356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				352394A1226F21A3000D880A /* ARHandler.swift */,
 				352A497C2244C98200E2E0CB /* DebugHandler.swift */,
 				35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */,
+				35AC8992228BC9D0009D80AC /* MatricesHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -256,10 +262,12 @@
 			files = (
 				35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */,
 				352394A2226F21A3000D880A /* ARHandler.swift in Sources */,
+				356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */,
 				352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */,
 				352394A0226F1913000D880A /* ARViewController.swift in Sources */,
 				352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */,
 				352394A4226F244C000D880A /* MainViewController.swift in Sources */,
+				35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */,
 				35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

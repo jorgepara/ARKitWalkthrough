@@ -46,6 +46,8 @@ internal class ARViewController: UIViewController {
             scene.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scene.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(recognizer:)))
+        scene.addGestureRecognizer(tapGestureRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +62,14 @@ internal class ARViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         scene.session.pause()
+    }
+
+    @objc func tapped(recognizer: UIGestureRecognizer) {
+        let location = recognizer.location(in: scene)
+        let hitTestResults = scene.hitTest(location)
+        if !hitTestResults.isEmpty {
+            handler?.tappedWithHitTestResults(hitTestResults)
+        }
     }
 
 }

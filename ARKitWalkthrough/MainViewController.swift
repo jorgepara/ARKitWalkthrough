@@ -105,6 +105,7 @@ internal extension MainViewController {
         case Debug = "1"
         case Tracking = "2"
         case CoordinateSpaces = "3"
+        case Matrices = "4"
     }
 
     static let InitialState: State = .Debug
@@ -115,6 +116,8 @@ internal extension MainViewController {
             return DebugHandler()
         case .Tracking:
             return TrackingHandler()
+        case .Matrices:
+            return MatricesHandler()
         default:
             return nil
         }

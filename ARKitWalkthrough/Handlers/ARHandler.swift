@@ -31,5 +31,16 @@ internal protocol ARHandler {
     ///   - anchor: anchor that was updated
     ///   - node: node for the  anchor
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode)
+    /// Invoked when a hit test produced results
+    ///
+    /// - Parameter results: results of the hit test
+    func tappedWithHitTestResults(_ results: [SCNHitTestResult])
 
 }
+
+internal extension ARHandler {
+
+    func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {}
+
+}
+
