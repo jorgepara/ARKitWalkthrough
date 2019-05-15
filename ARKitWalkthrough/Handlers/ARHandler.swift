@@ -35,7 +35,10 @@ internal protocol ARHandler {
     ///
     /// - Parameter results: results of the hit test
     func tappedWithHitTestResults(_ results: [SCNHitTestResult])
-
+    /// Allows the handler to provide an array of supplementary views that will
+    /// be displayed as onscreen controls
+    ///
+    /// - Returns: array of supplementary views or nil if those views are not required
     func supplementaryOnScreenViews() -> [UIView]?
 }
 

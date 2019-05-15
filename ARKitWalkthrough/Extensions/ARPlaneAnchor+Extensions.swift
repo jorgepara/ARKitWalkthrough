@@ -10,6 +10,13 @@ import Foundation
 import ARKit
 
 extension ARPlaneAnchor {
+
+
+    /// Creates a node that represents the subjacent plane for this anchor,
+    /// with the same position and size
+    /// and a traslucent color
+    ///
+    /// - Returns: <#return value description#>
     func nodeRepresentation() -> SCNNode {
         let width = CGFloat(self.extent.x)
         let height = CGFloat(self.extent.z)

@@ -10,6 +10,7 @@ import Foundation
 import ARKit
 import SceneKit
 
+/// Handler for demostrating the behavior of matricial transformation
 internal class MatricesHandler: ARHandler {
 
     lazy var configuration: ARConfiguration = {
@@ -63,10 +64,9 @@ internal class MatricesHandler: ARHandler {
         }
     }
 
-    func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {
-        results.forEach { print($0) }
-    }
-
+    /// Returns 4 buttons. 3 of them allow activating / deactivating a tranformation
+    /// matrix for translation, rotation and scale. The 4th button resets the transformation
+    /// to the identity matrix
     func supplementaryOnScreenViews() -> [UIView]? {
         var views = [UIView]()
 
@@ -89,6 +89,7 @@ internal class MatricesHandler: ARHandler {
         return views
     }
 
+    /// Creates a button for the supplemenary views
     private func makeMatrixButton(withIcon icon: String) -> UIButton {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -104,6 +105,8 @@ internal class MatricesHandler: ARHandler {
         return button
     }
 
+    /// Activates / deactivates translation matrix. It applies the reverse operation
+    /// when deselected to restore the initial position
     @objc private func switchTranslation(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         var translation = matrix_identity_float4x4
@@ -124,6 +127,9 @@ internal class MatricesHandler: ARHandler {
         }
         applyMatrix(translation)
     }
+
+    /// Activates / deactivates rotation matrix. It applies the reverse operation
+    /// when deselected to restore the initial orientation
     @objc private func switchRotation(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         let radians = 45 * Float.pi / 180
@@ -145,6 +151,9 @@ internal class MatricesHandler: ARHandler {
         }
         applyMatrix(rotation)
     }
+
+    /// Activates / deactivates scale matrix. It applies the reverse operation
+    /// when deselected to restore the initial size
     @objc private func switchScale(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         var scale = matrix_identity_float4x4
@@ -165,11 +174,13 @@ internal class MatricesHandler: ARHandler {
         }
         applyMatrix(scale)
     }
+    /// Resets the transformation matrix of the cup to affinity matrix
     @objc private func initTransformation(sender: UIButton) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = initialTransformation
     }
 
+    /// Applies a new transformation on top of the current transformation
     private func applyMatrix(_ matrix: simd_float4x4) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = matrix * cupNode.simdTransform
