@@ -18,6 +18,9 @@
 		352A497B2244C6A100E2E0CB /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A497A2244C6A100E2E0CB /* ARKit.framework */; };
 		352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugHandler.swift */; };
 		356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */; };
+		356B8C0C228D1D420077F342 /* CoordinateSpacesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */; };
+		356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */; };
+		356B8C10228D1FD20077F342 /* InteractionsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0F228D1FD20077F342 /* InteractionsHandler.swift */; };
 		35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC8992228BC9D0009D80AC /* MatricesHandler.swift */; };
 		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
 		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
@@ -50,6 +53,9 @@
 		352A497A2244C6A100E2E0CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		352A497C2244C98200E2E0CB /* DebugHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHandler.swift; sourceTree = "<group>"; };
 		356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARPlaneAnchor+Extensions.swift"; sourceTree = "<group>"; };
+		356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateSpacesHandler.swift; sourceTree = "<group>"; };
+		356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectOnPlaneHandler.swift; sourceTree = "<group>"; };
+		356B8C0F228D1FD20077F342 /* InteractionsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionsHandler.swift; sourceTree = "<group>"; };
 		35AC8992228BC9D0009D80AC /* MatricesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesHandler.swift; sourceTree = "<group>"; };
 		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
 		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
@@ -151,7 +157,10 @@
 				352394A1226F21A3000D880A /* ARHandler.swift */,
 				352A497C2244C98200E2E0CB /* DebugHandler.swift */,
 				35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */,
+				356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */,
+				356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */,
 				35AC8992228BC9D0009D80AC /* MatricesHandler.swift */,
+				356B8C0F228D1FD20077F342 /* InteractionsHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -265,8 +274,11 @@
 				356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */,
 				352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */,
 				352394A0226F1913000D880A /* ARViewController.swift in Sources */,
+				356B8C0C228D1D420077F342 /* CoordinateSpacesHandler.swift in Sources */,
 				352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */,
 				352394A4226F244C000D880A /* MainViewController.swift in Sources */,
+				356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */,
+				356B8C10228D1FD20077F342 /* InteractionsHandler.swift in Sources */,
 				35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */,
 				35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */,
 			);

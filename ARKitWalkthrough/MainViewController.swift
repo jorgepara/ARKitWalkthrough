@@ -140,10 +140,10 @@ internal extension MainViewController {
             return DebugHandler()
         case .Tracking:
             return TrackingHandler()
+        case .CoordinateSpaces:
+            return CoordinateSpacesHandler()
         case .Matrices:
             return MatricesHandler()
-        default:
-            return nil
         }
     }
 
