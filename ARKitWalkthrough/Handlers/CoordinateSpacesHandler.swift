@@ -37,16 +37,12 @@ internal class CoordinateSpacesHandler: ARHandler {
                 node.addChildNode($0)
                 guard let strongSelf = self else { return }
                 strongSelf.addAxesInHierarchy(forNode: $0)
+                if $0.name == "box" {
+                    strongSelf.parentNode = $0
+                    strongSelf.childNode = $0.childNodes.first
+                }
             }
         }
-//        sceneUpdateQueue?.async { [weak self] in
-//            guard let parentNode = scene.rootNode.childNodes.first else { return }
-//            node.addChildNode(parentNode)
-//            guard let strongSelf = self else { return }
-//            strongSelf.parentNode = parentNode
-//            strongSelf.childNode = parentNode.childNodes.first
-//            strongSelf.addAxesInHierarchy(forNode: parentNode)
-//        }
     }
 
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode) {}
@@ -89,7 +85,10 @@ internal class CoordinateSpacesHandler: ARHandler {
         if let parentButton = parentButton, parentButton.isSelected { selected.append(parentNode) }
         if let childButton = childButton, childButton.isSelected { selected.append(childNode) }
         SCNTransaction.animationDuration = 1
-        selected.forEach { $0?.eulerAngles = SCNVector3(Float.pi / 4, 0, 0) }
+        selected.forEach {
+            guard let selected = $0 else { return }
+            selected.simdLocalRotate(by: simd_quaternion(45, simd_make_float3(0, 0, 1)))
+        }
     }
 
     @objc private func translateSelected(sender: UIButton) {
@@ -97,7 +96,7 @@ internal class CoordinateSpacesHandler: ARHandler {
         if let parentButton = parentButton, parentButton.isSelected { selected.append(parentNode) }
         if let childButton = childButton, childButton.isSelected { selected.append(childNode) }
         SCNTransaction.animationDuration = 1
-        selected.forEach { $0?.localTranslate(by: SCNVector3(0, 0, 0.01)) }
+        selected.forEach { $0?.localTranslate(by: SCNVector3(0.01, 0, 0)) }
     }
 
     private func addAxesInHierarchy(forNode node: SCNNode) {

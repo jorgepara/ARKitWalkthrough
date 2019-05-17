@@ -13,6 +13,10 @@ import SceneKit
 /// Handler for demostrating the behavior of matricial transformation
 internal class MatricesHandler: ObjectOnPlaneHandler {
 
+    private var translationButton: UIButton?
+    private var rotationButton: UIButton?
+    private var scaleButton: UIButton?
+
     /// Returns 4 buttons. 3 of them allow activating / deactivating a tranformation
     /// matrix for translation, rotation and scale. The 4th button resets the transformation
     /// to the identity matrix
@@ -22,14 +26,17 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
         let translationButton = OnScreenButton(withIcon: "T")
         translationButton.addTarget(self, action: #selector(switchTranslation(sender:)), for: .touchUpInside)
         views.append(translationButton)
+        self.translationButton = translationButton
 
         let rotationButton = OnScreenButton(withIcon: "R")
         rotationButton.addTarget(self, action: #selector(switchRotation(sender:)), for: .touchUpInside)
         views.append(rotationButton)
+        self.rotationButton = rotationButton
 
         let scaleButton = OnScreenButton(withIcon: "S")
         scaleButton.addTarget(self, action: #selector(switchScale(sender:)), for: .touchUpInside)
         views.append(scaleButton)
+        self.scaleButton = scaleButton
 
         let initButton = OnScreenButton(withIcon: "I")
         initButton.addTarget(self, action: #selector(initTransformation(sender:)), for: .touchUpInside)
@@ -111,6 +118,9 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
     @objc private func initTransformation(sender: UIButton) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = initialTransformation
+        translationButton?.isSelected = false
+        rotationButton?.isSelected = false
+        scaleButton?.isSelected = false
     }
 
     /// Applies a new transformation on top of the current transformation
