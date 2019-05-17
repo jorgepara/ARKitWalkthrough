@@ -130,6 +130,7 @@ internal extension MainViewController {
         case Tracking = "2"
         case CoordinateSpaces = "3"
         case Matrices = "4"
+        case Interactions = "5"
     }
 
     static let InitialState: State = .Debug
@@ -144,6 +145,8 @@ internal extension MainViewController {
             return CoordinateSpacesHandler()
         case .Matrices:
             return MatricesHandler()
+        case .Interactions:
+            return InteractionsHandler()
         }
     }
 
@@ -151,7 +154,7 @@ internal extension MainViewController {
 
 internal extension MainViewController {
     struct Constants {
-        static let buttonVerticalMargin: CGFloat = 40
+        static let buttonVerticalMargin: CGFloat = 20
         static let buttonLeftMargin: CGFloat = 10
         static let buttonSize: CGFloat = 50
         static let buttonSpacing: CGFloat = 20

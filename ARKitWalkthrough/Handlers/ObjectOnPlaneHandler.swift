@@ -65,5 +65,6 @@ internal class ObjectOnPlaneHandler: ARHandler {
     }
 
     func supplementaryOnScreenViews() -> [UIView]? { return nil }
+    func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {}
 
 }

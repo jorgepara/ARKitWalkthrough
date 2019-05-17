@@ -13,7 +13,7 @@ import SceneKit
 /// and hints can support the user 
 internal class InteractionsHandler: ObjectOnPlaneHandler {
 
-    func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {
+    override func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {
         print(results)
     }
 
