@@ -22,6 +22,7 @@
 		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
 		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
 		35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */; };
+		809A0D1F228EDA6E00DE2AB3 /* CupSceneAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 809A0D1E228EDA6E00DE2AB3 /* CupSceneAssets.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
 		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
 		35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		809A0D1E228EDA6E00DE2AB3 /* CupSceneAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CupSceneAssets.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		352A49582244C66400E2E0CB /* ARKitWalkthrough */ = {
 			isa = PBXGroup;
 			children = (
+				809A0D1E228EDA6E00DE2AB3 /* CupSceneAssets.scnassets */,
 				352A49592244C66400E2E0CB /* AppDelegate.swift */,
 				352A495D2244C66400E2E0CB /* Main.storyboard */,
 				352394A3226F244C000D880A /* MainViewController.swift */,
@@ -243,6 +246,7 @@
 				35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */,
 				352A49612244C66600E2E0CB /* Assets.xcassets in Resources */,
 				352A495F2244C66400E2E0CB /* Main.storyboard in Resources */,
+				809A0D1F228EDA6E00DE2AB3 /* CupSceneAssets.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
