@@ -22,6 +22,8 @@
 		356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */; };
 		356B8C10228D1FD20077F342 /* InteractionsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0F228D1FD20077F342 /* InteractionsHandler.swift */; };
 		356B8C12228DAF310077F342 /* scene.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 356B8C11228DAF310077F342 /* scene.scnassets */; };
+		356B8C15228E729B0077F342 /* OnScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C14228E729B0077F342 /* OnScreenButton.swift */; };
+		356B8C17228E829A0077F342 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C16228E829A0077F342 /* UIStackView+Extensions.swift */; };
 		35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC8992228BC9D0009D80AC /* MatricesHandler.swift */; };
 		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
 		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
@@ -58,6 +60,8 @@
 		356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectOnPlaneHandler.swift; sourceTree = "<group>"; };
 		356B8C0F228D1FD20077F342 /* InteractionsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionsHandler.swift; sourceTree = "<group>"; };
 		356B8C11228DAF310077F342 /* scene.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = scene.scnassets; sourceTree = "<group>"; };
+		356B8C14228E729B0077F342 /* OnScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnScreenButton.swift; sourceTree = "<group>"; };
+		356B8C16228E829A0077F342 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		35AC8992228BC9D0009D80AC /* MatricesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesHandler.swift; sourceTree = "<group>"; };
 		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
 		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				352A495D2244C66400E2E0CB /* Main.storyboard */,
 				352394A3226F244C000D880A /* MainViewController.swift */,
 				3523949F226F1913000D880A /* ARViewController.swift */,
+				356B8C13228E72580077F342 /* Views */,
 				35E100152272DBEE00BBBD28 /* Handlers */,
 				35E1001222721E4300BBBD28 /* Extensions */,
 				35E100112271ED8100BBBD28 /* resources */,
@@ -137,6 +142,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		356B8C13228E72580077F342 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				356B8C14228E729B0077F342 /* OnScreenButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		35E100112271ED8100BBBD28 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +163,7 @@
 			children = (
 				35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */,
 				356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */,
+				356B8C16228E829A0077F342 /* UIStackView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -279,10 +293,12 @@
 				352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */,
 				352394A0226F1913000D880A /* ARViewController.swift in Sources */,
 				356B8C0C228D1D420077F342 /* CoordinateSpacesHandler.swift in Sources */,
+				356B8C15228E729B0077F342 /* OnScreenButton.swift in Sources */,
 				352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */,
 				352394A4226F244C000D880A /* MainViewController.swift in Sources */,
 				356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */,
 				356B8C10228D1FD20077F342 /* InteractionsHandler.swift in Sources */,
+				356B8C17228E829A0077F342 /* UIStackView+Extensions.swift in Sources */,
 				35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */,
 				35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */,
 			);

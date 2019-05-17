@@ -64,4 +64,6 @@ internal class ObjectOnPlaneHandler: ARHandler {
         }
     }
 
+    func supplementaryOnScreenViews() -> [UIView]? { return nil }
+
 }

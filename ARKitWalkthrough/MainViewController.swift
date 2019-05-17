@@ -113,7 +113,7 @@ class MainViewController: UIViewController {
 
         arViewController.handler = makeHandlerFor(state: state)
 
-        stackSupplementaryViews.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        stackSupplementaryViews.removeAllArrangedSubviews()
         // TODO: this is a form of feature envy.
         arViewController.handler?.supplementaryOnScreenViews()?.forEach { stackSupplementaryViews.addArrangedSubview($0) }
 

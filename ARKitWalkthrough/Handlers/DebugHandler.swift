@@ -52,4 +52,5 @@ internal class DebugHandler: ARHandler {
 
         planeNode.position = SCNVector3(x, y, z)
     }
+
 }

@@ -22,6 +22,11 @@ internal class CoordinateSpacesHandler: ARHandler {
     var debugOptions: ARSCNDebugOptions = []
     var sceneUpdateQueue: DispatchQueue? = nil
 
+
+    private var parentNode: SCNNode?
+    private var childNode: SCNNode?
+    private weak var parentButton: OnScreenButton?
+    private weak var childButton: OnScreenButton?
     private var playgroundFound = false
 
     func anchorWasAdded(withAnchor anchor: ARAnchor, node: SCNNode) {
@@ -34,12 +39,65 @@ internal class CoordinateSpacesHandler: ARHandler {
                 strongSelf.addAxesInHierarchy(forNode: $0)
             }
         }
+//        sceneUpdateQueue?.async { [weak self] in
+//            guard let parentNode = scene.rootNode.childNodes.first else { return }
+//            node.addChildNode(parentNode)
+//            guard let strongSelf = self else { return }
+//            strongSelf.parentNode = parentNode
+//            strongSelf.childNode = parentNode.childNodes.first
+//            strongSelf.addAxesInHierarchy(forNode: parentNode)
+//        }
     }
 
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode) {}
 
-    func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {
-        print(results)
+
+    /// Returns 4 buttons. 3 of them allow activating / deactivating a tranformation
+    /// matrix for translation, rotation and scale. The 4th button resets the transformation
+    /// to the identity matrix
+    func supplementaryOnScreenViews() -> [UIView]? {
+        var views = [UIView]()
+
+        let parentButton = OnScreenButton(withIcon: "P")
+        parentButton.addTarget(self, action: #selector(switchObject(sender:)), for: .touchUpInside)
+        views.append(parentButton)
+        self.parentButton = parentButton
+
+        let childButton = OnScreenButton(withIcon: "C")
+        childButton.addTarget(self, action: #selector(switchObject(sender:)), for: .touchUpInside)
+        views.append(childButton)
+        self.childButton = childButton
+
+        let rotateButton = OnScreenButton(withIcon: "R")
+        rotateButton.addTarget(self, action: #selector(rotateSelected(sender:)), for: .touchUpInside)
+        views.append(rotateButton)
+
+
+        let translateButton = OnScreenButton(withIcon: "T")
+        translateButton.addTarget(self, action: #selector(translateSelected(sender:)), for: .touchUpInside)
+        views.append(translateButton)
+
+        return views
+    }
+
+    @objc private func switchObject(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+
+    @objc private func rotateSelected(sender: UIButton) {
+        var selected = [SCNNode?]()
+        if let parentButton = parentButton, parentButton.isSelected { selected.append(parentNode) }
+        if let childButton = childButton, childButton.isSelected { selected.append(childNode) }
+        SCNTransaction.animationDuration = 1
+        selected.forEach { $0?.eulerAngles = SCNVector3(Float.pi / 4, 0, 0) }
+    }
+
+    @objc private func translateSelected(sender: UIButton) {
+        var selected = [SCNNode?]()
+        if let parentButton = parentButton, parentButton.isSelected { selected.append(parentNode) }
+        if let childButton = childButton, childButton.isSelected { selected.append(childNode) }
+        SCNTransaction.animationDuration = 1
+        selected.forEach { $0?.localTranslate(by: SCNVector3(0, 0, 0.01)) }
     }
 
     private func addAxesInHierarchy(forNode node: SCNNode) {
