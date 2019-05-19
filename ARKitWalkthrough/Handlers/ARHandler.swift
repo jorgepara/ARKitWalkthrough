@@ -31,10 +31,20 @@ internal protocol ARHandler {
     ///   - anchor: anchor that was updated
     ///   - node: node for the  anchor
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode)
-    /// Invoked when a hit test produced results
+    /// Invoked when there is a tap and a hit test produced results
     ///
     /// - Parameter results: results of the hit test
     func tappedWithHitTestResults(_ results: [SCNHitTestResult])
+    /// Invoked when a long press starts, hit test results can be empty
+    ///
+    /// - Parameter results: results of the hit test, it can be empty if there are no hits
+    func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult])
+    /// Invoked when a long press changes, hit test results can be empty
+    ///
+    /// - Parameter results: results of the hit test, it can be empty if there are no hits
+    func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint)
+    /// Invoked when a long press finishes, hit test results can be empty
+    func longPressedFinished()
     /// Allows the handler to provide an array of supplementary views that will
     /// be displayed as onscreen controls
     ///
@@ -44,6 +54,9 @@ internal protocol ARHandler {
 
 internal extension ARHandler {
     func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {}
+    func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {}
+    func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {}
+    func longPressedFinished() {}
     func supplementaryOnScreenViews() -> [UIView]? { return nil }
 }
 

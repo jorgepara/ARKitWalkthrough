@@ -10,6 +10,8 @@ import Foundation
 import ARKit
 import SceneKit
 
+/// Handler for demostrating the different coordinate spaces of different objects
+/// and how transformations in a parent node affect the child nodes
 internal class CoordinateSpacesHandler: ARHandler {
 
     lazy var configuration: ARConfiguration = {
@@ -36,7 +38,10 @@ internal class CoordinateSpacesHandler: ARHandler {
             scene.rootNode.childNodes.forEach { [weak self] in
                 node.addChildNode($0)
                 guard let strongSelf = self else { return }
+                // Add visual axis to the objects for a better understanding of the transformations
                 strongSelf.addAxesInHierarchy(forNode: $0)
+                // The box object is identified as the parent node and its first child is the child node
+                // for later transformations
                 if $0.name == "box" {
                     strongSelf.parentNode = $0
                     strongSelf.childNode = $0.childNodes.first
@@ -48,9 +53,8 @@ internal class CoordinateSpacesHandler: ARHandler {
     func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode) {}
 
 
-    /// Returns 4 buttons. 3 of them allow activating / deactivating a tranformation
-    /// matrix for translation, rotation and scale. The 4th button resets the transformation
-    /// to the identity matrix
+    /// Returns 4 buttons. 2 of them selecting which objects will be affected by the transformation
+    /// and 2 objects for translation and rotation.
     func supplementaryOnScreenViews() -> [UIView]? {
         var views = [UIView]()
 
@@ -101,9 +105,11 @@ internal class CoordinateSpacesHandler: ARHandler {
 
     private func addAxesInHierarchy(forNode node: SCNNode) {
         node.childNodes.forEach { addAxesInHierarchy(forNode: $0) }
+        // Only nodes with a geometry will have axis (therefore ignoring lights cameras or any other objects).
         if node.geometry != nil { node.addChildNode(makeAxes()) }
     }
 
+    /// Draw origin and x, y and z axis with the color convention of red, green and blue
     private func makeAxes() -> SCNNode {
         let originNode = SCNNode(geometry: SCNSphere(radius: 0.001))
         originNode.geometry?.materials.first?.diffuse.contents = UIColor.white

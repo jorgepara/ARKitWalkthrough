@@ -27,6 +27,8 @@ internal class ObjectOnPlaneHandler: ARHandler {
         return cupNode
     }()
 
+    weak var playgroundNode: SCNNode?
+
     var sessionOptions: ARSession.RunOptions = [.removeExistingAnchors]
     var debugOptions: ARSCNDebugOptions = []
     var sceneUpdateQueue: DispatchQueue? = nil
@@ -56,6 +58,7 @@ internal class ObjectOnPlaneHandler: ARHandler {
         playgroundFound = true
 
         let planeNode = planeAnchor.nodeRepresentation()
+        playgroundNode = planeNode
 
         sceneUpdateQueue?.async { [weak self] in
             guard let self = self else { return }
@@ -66,5 +69,8 @@ internal class ObjectOnPlaneHandler: ARHandler {
 
     func supplementaryOnScreenViews() -> [UIView]? { return nil }
     func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {}
+    func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {}
+    func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {}
+    func longPressedFinished() {}
 
 }

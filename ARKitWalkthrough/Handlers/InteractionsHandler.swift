@@ -13,8 +13,32 @@ import SceneKit
 /// and hints can support the user 
 internal class InteractionsHandler: ObjectOnPlaneHandler {
 
-    override func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {
-        print(results)
+    private let verticalGapPressed: Float =  0.01
+    private var cupInMotion = false
+
+    override func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {
+        if !cupInMotion && results.map({ return $0.node }).contains(cupNode) {
+            cupInMotion = true
+            SCNTransaction.animationDuration = 0.5
+            cupNode.opacity = 0.5
+            cupNode.localTranslate(by: SCNVector3(0, verticalGapPressed, 0))
+        }
     }
+    override func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {
+        if cupInMotion, let playgroundResult = results.filter({ $0.node == playgroundNode }).first {
+            let hitIntersection = playgroundResult.localCoordinates
+            print(hitIntersection)
+            SCNTransaction.animationDuration = 0.5
+            cupNode.position = SCNVector3(x: hitIntersection.x, y: 0.05 + verticalGapPressed, z: -hitIntersection.y)
+        }
+    }
+    override func longPressedFinished() {
+        if cupInMotion {
+            cupInMotion = false
+            cupNode.opacity = 1
+            cupNode.localTranslate(by: SCNVector3(0, -verticalGapPressed, 0))
+        }
+    }
+
 
 }

@@ -14,6 +14,8 @@ import ARKit
 /// and will rely on a handler for the configuration and event management
 internal class ARViewController: UIViewController {
 
+    private var lastTraslationPoint: CGPoint?
+
     private lazy var scene: ARSCNView = {
         let scene = ARSCNView(frame: .zero)
         scene.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +50,8 @@ internal class ARViewController: UIViewController {
         ])
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(recognizer:)))
         scene.addGestureRecognizer(tapGestureRecognizer)
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(recognizer:)))
+        scene.addGestureRecognizer(longPressRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +75,22 @@ internal class ARViewController: UIViewController {
             handler?.tappedWithHitTestResults(hitTestResults)
         }
     }
-
+    @objc func longPressed(recognizer: UILongPressGestureRecognizer) {
+        let location = recognizer.location(in: scene)
+        let hitTestResults = scene.hitTest(location)
+        if recognizer.state == .began {
+            if !hitTestResults.isEmpty {
+                lastTraslationPoint = location
+                handler?.longPressedStartedWithHitTestResults(hitTestResults)
+            }
+        } else if recognizer.state == .changed {
+            let traslation = CGPoint(x: location.x - (lastTraslationPoint?.x ?? 0), y: location.y - (lastTraslationPoint?.y ?? 0))
+            lastTraslationPoint = location
+            handler?.longPressedChangedWithHitTestResults(hitTestResults, onScreenTranslation: traslation)
+        } else if recognizer.state == .ended {
+            handler?.longPressedFinished()
+        }
+    }
 }
 
 extension ARViewController: ARSCNViewDelegate {
