@@ -17,7 +17,7 @@ internal class InteractionsHandler: ObjectOnPlaneHandler {
     private var cupInMotion = false
 
     override func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {
-        if !cupInMotion && results.map({ return $0.node }).contains(cupNode) {
+        if !cupInMotion && !results.map({ return $0.node }).filter({ $0.name?.starts(with: "Circle") ?? false }).isEmpty {
             cupInMotion = true
             SCNTransaction.animationDuration = 0.5
             cupNode.opacity = 0.5

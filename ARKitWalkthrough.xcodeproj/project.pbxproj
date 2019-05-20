@@ -24,6 +24,7 @@
 		356B8C12228DAF310077F342 /* scene.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 356B8C11228DAF310077F342 /* scene.scnassets */; };
 		356B8C15228E729B0077F342 /* OnScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C14228E729B0077F342 /* OnScreenButton.swift */; };
 		356B8C17228E829A0077F342 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C16228E829A0077F342 /* UIStackView+Extensions.swift */; };
+		356BA8FD2292E8450089FCBA /* CupSceneAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 356BA8FC2292E8450089FCBA /* CupSceneAssets.scnassets */; };
 		35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC8992228BC9D0009D80AC /* MatricesHandler.swift */; };
 		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
 		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
@@ -62,6 +63,7 @@
 		356B8C11228DAF310077F342 /* scene.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = scene.scnassets; sourceTree = "<group>"; };
 		356B8C14228E729B0077F342 /* OnScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnScreenButton.swift; sourceTree = "<group>"; };
 		356B8C16228E829A0077F342 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		356BA8FC2292E8450089FCBA /* CupSceneAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CupSceneAssets.scnassets; sourceTree = "<group>"; };
 		35AC8992228BC9D0009D80AC /* MatricesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesHandler.swift; sourceTree = "<group>"; };
 		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
 		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				352A49622244C66600E2E0CB /* LaunchScreen.storyboard */,
 				352A49652244C66600E2E0CB /* Info.plist */,
 				356B8C11228DAF310077F342 /* scene.scnassets */,
+				356BA8FC2292E8450089FCBA /* CupSceneAssets.scnassets */,
 			);
 			path = ARKitWalkthrough;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				352A49642244C66600E2E0CB /* LaunchScreen.storyboard in Resources */,
 				35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */,
 				352A49612244C66600E2E0CB /* Assets.xcassets in Resources */,
+				356BA8FD2292E8450089FCBA /* CupSceneAssets.scnassets in Resources */,
 				352A495F2244C66400E2E0CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

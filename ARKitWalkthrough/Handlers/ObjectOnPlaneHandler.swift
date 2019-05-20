@@ -20,10 +20,13 @@ internal class ObjectOnPlaneHandler: ARHandler {
     }()
 
     lazy var cupNode: SCNNode = {
-        let cylinder = SCNCylinder(radius: 0.05, height: 0.1)
-        cylinder.materials.first?.diffuse.contents = UIImage(named: "logo_cognizant.jpg") ?? UIColor.blue
-        let cupNode = SCNNode(geometry: cylinder)
-        cupNode.simdTransform = initialTransformation
+        let cupNode = SCNNode(geometry: nil)
+        guard let scene = SCNScene(named: "CupSceneAssets.scnassets/glass.scn") else { return cupNode }
+        sceneUpdateQueue?.async {
+            scene.rootNode.childNodes.forEach { [weak self] in
+                cupNode.addChildNode($0)
+            }
+        }
         return cupNode
     }()
 

@@ -58,12 +58,12 @@ internal class CoordinateSpacesHandler: ARHandler {
     func supplementaryOnScreenViews() -> [UIView]? {
         var views = [UIView]()
 
-        let parentButton = OnScreenButton(withIcon: "P")
+        let parentButton = OnScreenButton(withIcon: "Parent")
         parentButton.addTarget(self, action: #selector(switchObject(sender:)), for: .touchUpInside)
         views.append(parentButton)
         self.parentButton = parentButton
 
-        let childButton = OnScreenButton(withIcon: "C")
+        let childButton = OnScreenButton(withIcon: "Child")
         childButton.addTarget(self, action: #selector(switchObject(sender:)), for: .touchUpInside)
         views.append(childButton)
         self.childButton = childButton
