@@ -68,12 +68,12 @@ internal class CoordinateSpacesHandler: ARHandler {
         views.append(childButton)
         self.childButton = childButton
 
-        let rotateButton = OnScreenButton(withIcon: "R")
+        let rotateButton = OnScreenButton(withIcon: "Rotation")
         rotateButton.addTarget(self, action: #selector(rotateSelected(sender:)), for: .touchUpInside)
         views.append(rotateButton)
 
 
-        let translateButton = OnScreenButton(withIcon: "T")
+        let translateButton = OnScreenButton(withIcon: "Traslation")
         translateButton.addTarget(self, action: #selector(translateSelected(sender:)), for: .touchUpInside)
         views.append(translateButton)
 

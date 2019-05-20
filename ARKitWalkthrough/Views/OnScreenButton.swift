@@ -10,15 +10,30 @@ import UIKit
 
 class OnScreenButton: UIButton {
 
+    override var isSelected: Bool {
+        didSet {
+            print(isSelected)
+        }
+    }
+
     private static let buttonSize: CGFloat = 44
+    private static let imageInsets: CGFloat = 5
 
     init(withIcon icon: String) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        setTitle(icon, for: .normal)
+        imageEdgeInsets = UIEdgeInsets(top: OnScreenButton.imageInsets, left: OnScreenButton.imageInsets, bottom: OnScreenButton.imageInsets, right: OnScreenButton.imageInsets)
+        if let imageSelected = UIImage(named: icon + "Selected"), let imageDeselected = UIImage(named: icon + "Deselected") {
+            setImage(imageSelected, for: [.selected, .highlighted])
+            setImage(imageSelected, for: .selected)
+            setImage(imageSelected, for: .highlighted)
+            setImage(imageDeselected, for: [])
+        } else {
+            setTitle(icon, for: .normal)
+            setTitleColor(UIColor.textSelectedSecondary, for: .selected)
+            setTitleColor(UIColor.textDeselected, for: .normal)
+        }
         backgroundColor = UIColor.buttonBackground
-        setTitleColor(UIColor.textSelectedSecondary, for: .selected)
-        setTitleColor(UIColor.textDeselected, for: .normal)
         clipsToBounds = true
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: OnScreenButton.buttonSize),

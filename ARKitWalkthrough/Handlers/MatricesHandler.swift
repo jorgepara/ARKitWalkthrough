@@ -23,24 +23,24 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
     override func supplementaryOnScreenViews() -> [UIView]? {
         var views = [UIView]()
 
-        let translationButton = OnScreenButton(withIcon: "T")
+        let translationButton = OnScreenButton(withIcon: "Traslation")
         translationButton.addTarget(self, action: #selector(switchTranslation(sender:)), for: .touchUpInside)
         views.append(translationButton)
         self.translationButton = translationButton
 
-        let rotationButton = OnScreenButton(withIcon: "R")
+        let rotationButton = OnScreenButton(withIcon: "Rotation")
         rotationButton.addTarget(self, action: #selector(switchRotation(sender:)), for: .touchUpInside)
         views.append(rotationButton)
         self.rotationButton = rotationButton
 
-        let scaleButton = OnScreenButton(withIcon: "S")
+        let scaleButton = OnScreenButton(withIcon: "Scale")
         scaleButton.addTarget(self, action: #selector(switchScale(sender:)), for: .touchUpInside)
         views.append(scaleButton)
         self.scaleButton = scaleButton
 
-        let initButton = OnScreenButton(withIcon: "I")
-        initButton.addTarget(self, action: #selector(initTransformation(sender:)), for: .touchUpInside)
-        views.append(initButton)
+        let resetButton = OnScreenButton(withIcon: "Reset")
+        resetButton.addTarget(self, action: #selector(resetTransformation(sender:)), for: .touchUpInside)
+        views.append(resetButton)
 
         return views
     }
@@ -115,7 +115,7 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
         applyMatrix(scale)
     }
     /// Resets the transformation matrix of the cup to affinity matrix
-    @objc private func initTransformation(sender: UIButton) {
+    @objc private func resetTransformation(sender: UIButton) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = initialTransformation
         translationButton?.isSelected = false

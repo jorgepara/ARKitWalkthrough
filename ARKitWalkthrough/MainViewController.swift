@@ -53,7 +53,7 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             stackSupplementaryViews.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.supplementaryViewLateralMargin),
             stackSupplementaryViews.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.supplementaryViewLateralMargin),
-            stackSupplementaryViews.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackSupplementaryViews.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             stackSupplementaryViews.heightAnchor.constraint(equalToConstant: Constants.supplementaryViewHeight)
             ])
 
