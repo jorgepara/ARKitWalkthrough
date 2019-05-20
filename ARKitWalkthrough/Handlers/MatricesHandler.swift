@@ -11,98 +11,38 @@ import ARKit
 import SceneKit
 
 /// Handler for demostrating the behavior of matricial transformation
-internal class MatricesHandler: ARHandler {
+internal class MatricesHandler: ObjectOnPlaneHandler {
 
-    lazy var configuration: ARConfiguration = {
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
-        return configuration
-    }()
-
-    lazy var cupNode: SCNNode = {
-        let cylinder = SCNCylinder(radius: 0.05, height: 0.1)
-        cylinder.materials.first?.diffuse.contents = UIImage(named: "logo_cognizant.jpg") ?? UIColor.blue
-        let cupNode = SCNNode(geometry: cylinder)
-        cupNode.simdTransform = initialTransformation
-        return cupNode
-    }()
-
-    var sessionOptions: ARSession.RunOptions = [.removeExistingAnchors]
-    var debugOptions: ARSCNDebugOptions = []
-    var sceneUpdateQueue: DispatchQueue? = nil
-
-    private static let mininumLenght: CGFloat = 0.3
-
-    private let initialTransformation = simd_float4x4(
-        float4(1, 0, 0, 0),
-        float4(0, 1, 0, 0),
-        float4(0, 0, 1, 0),
-        float4(0, 0.05, 0, 1))
-
-    private var playgroundFound =  false
-
-    func anchorWasAdded(withAnchor anchor: ARAnchor, node: SCNNode) {}
-
-    func anchorWasUpdated(withAnchor anchor: ARAnchor, node: SCNNode) {
-        guard !playgroundFound else { return }
-
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-
-        let width = CGFloat(planeAnchor.extent.x)
-        let height = CGFloat(planeAnchor.extent.z)
-
-        guard width >= MatricesHandler.mininumLenght, height >= MatricesHandler.mininumLenght  else { return }
-
-        playgroundFound = true
-
-        let planeNode = planeAnchor.nodeRepresentation()
-
-        sceneUpdateQueue?.async { [weak self] in
-            guard let self = self else { return }
-            node.addChildNode(planeNode)
-            node.addChildNode(self.cupNode)
-        }
-    }
+    private var translationButton: UIButton?
+    private var rotationButton: UIButton?
+    private var scaleButton: UIButton?
 
     /// Returns 4 buttons. 3 of them allow activating / deactivating a tranformation
     /// matrix for translation, rotation and scale. The 4th button resets the transformation
     /// to the identity matrix
-    func supplementaryOnScreenViews() -> [UIView]? {
+    override func supplementaryOnScreenViews() -> [UIView]? {
         var views = [UIView]()
 
-        let translationButton = makeMatrixButton(withIcon: "T")
+        let translationButton = OnScreenButton(withIcon: "T")
         translationButton.addTarget(self, action: #selector(switchTranslation(sender:)), for: .touchUpInside)
         views.append(translationButton)
+        self.translationButton = translationButton
 
-        let rotationButton = makeMatrixButton(withIcon: "R")
+        let rotationButton = OnScreenButton(withIcon: "R")
         rotationButton.addTarget(self, action: #selector(switchRotation(sender:)), for: .touchUpInside)
         views.append(rotationButton)
+        self.rotationButton = rotationButton
 
-        let scaleButton = makeMatrixButton(withIcon: "S")
+        let scaleButton = OnScreenButton(withIcon: "S")
         scaleButton.addTarget(self, action: #selector(switchScale(sender:)), for: .touchUpInside)
         views.append(scaleButton)
+        self.scaleButton = scaleButton
 
-        let initButton = makeMatrixButton(withIcon: "I")
+        let initButton = OnScreenButton(withIcon: "I")
         initButton.addTarget(self, action: #selector(initTransformation(sender:)), for: .touchUpInside)
         views.append(initButton)
 
         return views
-    }
-
-    /// Creates a button for the supplemenary views
-    private func makeMatrixButton(withIcon icon: String) -> UIButton {
-        let button = UIButton(frame: .zero)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(icon, for: .normal)
-        button.backgroundColor = UIColor.buttonBackground
-        button.setTitleColor(UIColor.textSelectedSecondary, for: .selected)
-        button.setTitleColor(UIColor.textDeselected, for: .normal)
-        button.clipsToBounds = true
-        NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: Constants.buttonSize),
-            button.heightAnchor.constraint(equalToConstant: Constants.buttonSize)
-            ])
-        return button
     }
 
     /// Activates / deactivates translation matrix. It applies the reverse operation
@@ -178,18 +118,16 @@ internal class MatricesHandler: ARHandler {
     @objc private func initTransformation(sender: UIButton) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = initialTransformation
+        translationButton?.isSelected = false
+        rotationButton?.isSelected = false
+        scaleButton?.isSelected = false
     }
 
     /// Applies a new transformation on top of the current transformation
     private func applyMatrix(_ matrix: simd_float4x4) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = matrix * cupNode.simdTransform
+        print(cupNode.simdTransform)
     }
 
-}
-
-internal extension MatricesHandler {
-    struct Constants {
-        static let buttonSize: CGFloat = 44
-    }
 }

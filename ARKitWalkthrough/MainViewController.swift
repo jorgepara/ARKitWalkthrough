@@ -113,7 +113,7 @@ class MainViewController: UIViewController {
 
         arViewController.handler = makeHandlerFor(state: state)
 
-        stackSupplementaryViews.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        stackSupplementaryViews.removeAllArrangedSubviews()
         // TODO: this is a form of feature envy.
         arViewController.handler?.supplementaryOnScreenViews()?.forEach { stackSupplementaryViews.addArrangedSubview($0) }
 
@@ -130,6 +130,7 @@ internal extension MainViewController {
         case Tracking = "2"
         case CoordinateSpaces = "3"
         case Matrices = "4"
+        case Interactions = "5"
     }
 
     static let InitialState: State = .Debug
@@ -140,10 +141,12 @@ internal extension MainViewController {
             return DebugHandler()
         case .Tracking:
             return TrackingHandler()
+        case .CoordinateSpaces:
+            return CoordinateSpacesHandler()
         case .Matrices:
             return MatricesHandler()
-        default:
-            return nil
+        case .Interactions:
+            return InteractionsHandler()
         }
     }
 
@@ -151,7 +154,7 @@ internal extension MainViewController {
 
 internal extension MainViewController {
     struct Constants {
-        static let buttonVerticalMargin: CGFloat = 40
+        static let buttonVerticalMargin: CGFloat = 20
         static let buttonLeftMargin: CGFloat = 10
         static let buttonSize: CGFloat = 50
         static let buttonSpacing: CGFloat = 20
