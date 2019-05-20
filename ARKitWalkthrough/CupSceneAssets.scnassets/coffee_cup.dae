@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2019-05-20T14:17:53Z</created>
-  <modified>2019-05-20T14:17:53Z</modified>
+  <created>2019-05-20T15:49:53Z</created>
+  <modified>2019-05-20T15:49:53Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -418,6 +418,11 @@
    <node id="node47" name="Cup_002">
     <matrix>3.405005 0 0 -0.3260842 0 3.405005 0 0 0 0 3.405005 0 0 0 0 1 </matrix>
     <instance_geometry url="#Circle_004"/>
+    <extra>
+     <technique profile="SceneKit">
+      <visibility>0</visibility>
+     </technique>
+    </extra>
    </node>
    <node id="node48" name="Cup_001">
     <matrix>3.405005 0 0 0.02675487 0 3.405005 0 7.561211 0 0 3.405005 0.02852544 0 0 0 1 </matrix>

@@ -17,6 +17,13 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
     private var rotationButton: UIButton?
     private var scaleButton: UIButton?
 
+//    private let initialTransformation = simd_float4x4(
+//        float4(1, 0, 0, 0),
+//        float4(0, 1, 0, 0),
+//        float4(0, 0, 1, 0),
+//        float4(0, 0.05, 0, 1))
+
+
     /// Returns 4 buttons. 3 of them allow activating / deactivating a tranformation
     /// matrix for translation, rotation and scale. The 4th button resets the transformation
     /// to the identity matrix
@@ -117,6 +124,7 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
     /// Resets the transformation matrix of the cup to affinity matrix
     @objc private func resetTransformation(sender: UIButton) {
         SCNTransaction.animationDuration = 1
+        cupNode.simdTransform = matrix_identity_float4x4
         translationButton?.isSelected = false
         rotationButton?.isSelected = false
         scaleButton?.isSelected = false

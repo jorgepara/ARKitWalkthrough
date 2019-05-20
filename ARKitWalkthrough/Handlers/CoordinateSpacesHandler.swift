@@ -32,19 +32,21 @@ internal class CoordinateSpacesHandler: ARHandler {
     private var playgroundFound = false
 
     func anchorWasAdded(withAnchor anchor: ARAnchor, node: SCNNode) {
-        guard !playgroundFound, anchor is ARPlaneAnchor, let scene = SCNScene(named: "scene.scnassets/scene.scn") else { return }
+        guard !playgroundFound, anchor is ARPlaneAnchor,let scene = SCNScene(named: "CupSceneAssets.scnassets/glass.scn") else { return }
         playgroundFound = true
         sceneUpdateQueue?.async {
             scene.rootNode.childNodes.forEach { [weak self] in
                 node.addChildNode($0)
                 guard let strongSelf = self else { return }
-                // Add visual axis to the objects for a better understanding of the transformations
-                strongSelf.addAxesInHierarchy(forNode: $0)
                 // The box object is identified as the parent node and its first child is the child node
                 // for later transformations
-                if $0.name == "box" {
-                    strongSelf.parentNode = $0
-                    strongSelf.childNode = $0.childNodes.first
+                if let parentNode = $0.childNode(withName: "Cup_001", recursively: true) {
+                    strongSelf.parentNode = parentNode
+                    strongSelf.childNode = parentNode.childNode(withName: "Circle_005", recursively: true)
+                    // Add visual axis to the objects for a better understanding of the transformations
+                    strongSelf.addAxes(forNode: strongSelf.parentNode)
+                    strongSelf.addAxes(forNode: strongSelf.childNode)
+
                 }
             }
         }
@@ -91,7 +93,7 @@ internal class CoordinateSpacesHandler: ARHandler {
         SCNTransaction.animationDuration = 1
         selected.forEach {
             guard let selected = $0 else { return }
-            selected.simdLocalRotate(by: simd_quaternion(45, simd_make_float3(0, 0, 1)))
+            selected.simdLocalRotate(by: simd_quaternion(45, simd_make_float3(0, 1, 0)))
         }
     }
 
@@ -100,34 +102,36 @@ internal class CoordinateSpacesHandler: ARHandler {
         if let parentButton = parentButton, parentButton.isSelected { selected.append(parentNode) }
         if let childButton = childButton, childButton.isSelected { selected.append(childNode) }
         SCNTransaction.animationDuration = 1
-        selected.forEach { $0?.localTranslate(by: SCNVector3(0.01, 0, 0)) }
+        selected.forEach { $0?.localTranslate(by: SCNVector3(5, 0, 0)) }
     }
 
-    private func addAxesInHierarchy(forNode node: SCNNode) {
-        node.childNodes.forEach { addAxesInHierarchy(forNode: $0) }
-        // Only nodes with a geometry will have axis (therefore ignoring lights cameras or any other objects).
-        if node.geometry != nil { node.addChildNode(makeAxes()) }
+    private func addAxes(forNode node: SCNNode?) {
+        guard let node = node else { return }
+        node.addChildNode(makeAxes())
     }
 
     /// Draw origin and x, y and z axis with the color convention of red, green and blue
     private func makeAxes() -> SCNNode {
-        let originNode = SCNNode(geometry: SCNSphere(radius: 0.001))
+
+        let factor: CGFloat = 10
+
+        let originNode = SCNNode(geometry: SCNSphere(radius: 0.001 * factor))
         originNode.geometry?.materials.first?.diffuse.contents = UIColor.white
 
-        let xAxisGeometry = SCNBox(width: 0.001, height: 0.001, length: 0.30, chamferRadius: 0)
+        let xAxisGeometry = SCNBox(width: 0.001 * factor, height: 0.001 * factor, length: 0.30 * factor, chamferRadius: 0)
         let xAxisNode = SCNNode(geometry: xAxisGeometry)
         xAxisNode.geometry?.materials.first?.diffuse.contents = UIColor.red
-        xAxisNode.localTranslate(by: SCNVector3(x: 0.15, y: 0, z: 0))
+        xAxisNode.localTranslate(by: SCNVector3(x: Float(0.15 * factor), y: 0, z: 0))
         xAxisNode.eulerAngles = SCNVector3(0, Float.pi / 2, 0)
-        let yAxisGeometry = SCNBox(width: 0.001, height: 0.001, length: 0.30, chamferRadius: 0)
+        let yAxisGeometry = SCNBox(width: 0.001, height: 0.001 * factor, length: 0.30 * factor, chamferRadius: 0)
         let yAxisNode = SCNNode(geometry: yAxisGeometry)
         yAxisNode.geometry?.materials.first?.diffuse.contents = UIColor.green
-        yAxisNode.localTranslate(by: SCNVector3(x: 0, y: 0.15, z: 0))
+        yAxisNode.localTranslate(by: SCNVector3(x: 0, y: Float(0.15 * factor), z: 0))
         yAxisNode.eulerAngles = SCNVector3(Float.pi / 2, 0, 0)
-        let zAxisGeometry = SCNBox(width: 0.001, height: 0.001, length: 0.30, chamferRadius: 0)
+        let zAxisGeometry = SCNBox(width: 0.001, height: 0.001 * factor, length: 0.30 * factor, chamferRadius: 0)
         let zAxisNode = SCNNode(geometry: zAxisGeometry)
         zAxisNode.geometry?.materials.first?.diffuse.contents = UIColor.blue
-        zAxisNode.localTranslate(by: SCNVector3(x: 0, y: 0, z: 0.15))
+        zAxisNode.localTranslate(by: SCNVector3(x: 0, y: 0, z: Float(0.15 * factor)))
 
         originNode.addChildNode(xAxisNode)
         originNode.addChildNode(yAxisNode)
