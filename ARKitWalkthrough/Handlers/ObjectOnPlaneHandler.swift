@@ -36,12 +36,6 @@ internal class ObjectOnPlaneHandler: ARHandler {
     var debugOptions: ARSCNDebugOptions = []
     var sceneUpdateQueue: DispatchQueue? = nil
 
-    let initialTransformation = simd_float4x4(
-        float4(1, 0, 0, 0),
-        float4(0, 1, 0, 0),
-        float4(0, 0, 1, 0),
-        float4(0, 0.05, 0, 1))
-
     private static let mininumLenght: CGFloat = 0.3
 
     private var playgroundFound =  false

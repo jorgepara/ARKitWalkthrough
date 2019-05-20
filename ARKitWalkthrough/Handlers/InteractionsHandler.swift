@@ -27,9 +27,8 @@ internal class InteractionsHandler: ObjectOnPlaneHandler {
     override func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {
         if cupInMotion, let playgroundResult = results.filter({ $0.node == playgroundNode }).first {
             let hitIntersection = playgroundResult.localCoordinates
-            print(hitIntersection)
             SCNTransaction.animationDuration = 0.5
-            cupNode.position = SCNVector3(x: hitIntersection.x, y: 0.05 + verticalGapPressed, z: -hitIntersection.y)
+            cupNode.position = SCNVector3(x: hitIntersection.x, y: verticalGapPressed, z: -hitIntersection.y)
         }
     }
     override func longPressedFinished() {

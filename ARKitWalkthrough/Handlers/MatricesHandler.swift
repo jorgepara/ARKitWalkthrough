@@ -117,7 +117,6 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
     /// Resets the transformation matrix of the cup to affinity matrix
     @objc private func resetTransformation(sender: UIButton) {
         SCNTransaction.animationDuration = 1
-        cupNode.simdTransform = initialTransformation
         translationButton?.isSelected = false
         rotationButton?.isSelected = false
         scaleButton?.isSelected = false
