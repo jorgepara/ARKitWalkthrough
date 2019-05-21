@@ -21,7 +21,7 @@ internal class CoordinateSpacesHandler: ARHandler {
     }()
 
     var sessionOptions: ARSession.RunOptions = [.removeExistingAnchors]
-    var debugOptions: ARSCNDebugOptions = []
+    var debugOptions: ARSCNDebugOptions = [.showWorldOrigin]
     var sceneUpdateQueue: DispatchQueue? = nil
 
 
@@ -35,6 +35,7 @@ internal class CoordinateSpacesHandler: ARHandler {
         guard !playgroundFound, anchor is ARPlaneAnchor,let scene = SCNScene(named: "CupSceneAssets.scnassets/glass.scn") else { return }
         playgroundFound = true
         sceneUpdateQueue?.async {
+            self.addAxes(forNode: node, withWeight: 1)
             scene.rootNode.childNodes.forEach { [weak self] in
                 node.addChildNode($0)
                 guard let strongSelf = self else { return }
@@ -44,8 +45,8 @@ internal class CoordinateSpacesHandler: ARHandler {
                     strongSelf.parentNode = parentNode
                     strongSelf.childNode = parentNode.childNode(withName: "Circle_005", recursively: true)
                     // Add visual axis to the objects for a better understanding of the transformations
-                    strongSelf.addAxes(forNode: strongSelf.parentNode)
-                    strongSelf.addAxes(forNode: strongSelf.childNode)
+                    strongSelf.addAxes(forNode: strongSelf.parentNode, withWeight: 10)
+                    strongSelf.addAxes(forNode: strongSelf.childNode, withWeight: 10)
 
                 }
             }
@@ -105,33 +106,32 @@ internal class CoordinateSpacesHandler: ARHandler {
         selected.forEach { $0?.localTranslate(by: SCNVector3(5, 0, 0)) }
     }
 
-    private func addAxes(forNode node: SCNNode?) {
+    private func addAxes(forNode node: SCNNode?, withWeight weight: CGFloat) {
         guard let node = node else { return }
-        node.addChildNode(makeAxes())
+        node.addChildNode(makeAxes(withWeight: weight))
     }
 
     /// Draw origin and x, y and z axis with the color convention of red, green and blue
-    private func makeAxes() -> SCNNode {
+    private func makeAxes(withWeight weight: CGFloat) -> SCNNode {
 
-        let factor: CGFloat = 10
 
-        let originNode = SCNNode(geometry: SCNSphere(radius: 0.001 * factor))
+        let originNode = SCNNode(geometry: SCNSphere(radius: 0.001 * weight))
         originNode.geometry?.materials.first?.diffuse.contents = UIColor.white
 
-        let xAxisGeometry = SCNBox(width: 0.001 * factor, height: 0.001 * factor, length: 0.30 * factor, chamferRadius: 0)
+        let xAxisGeometry = SCNBox(width: 0.001 * weight, height: 0.001 * weight, length: 0.30 * weight, chamferRadius: 0)
         let xAxisNode = SCNNode(geometry: xAxisGeometry)
         xAxisNode.geometry?.materials.first?.diffuse.contents = UIColor.red
-        xAxisNode.localTranslate(by: SCNVector3(x: Float(0.15 * factor), y: 0, z: 0))
+        xAxisNode.localTranslate(by: SCNVector3(x: Float(0.15 * weight), y: 0, z: 0))
         xAxisNode.eulerAngles = SCNVector3(0, Float.pi / 2, 0)
-        let yAxisGeometry = SCNBox(width: 0.001, height: 0.001 * factor, length: 0.30 * factor, chamferRadius: 0)
+        let yAxisGeometry = SCNBox(width: 0.001, height: 0.001 * weight, length: 0.30 * weight, chamferRadius: 0)
         let yAxisNode = SCNNode(geometry: yAxisGeometry)
         yAxisNode.geometry?.materials.first?.diffuse.contents = UIColor.green
-        yAxisNode.localTranslate(by: SCNVector3(x: 0, y: Float(0.15 * factor), z: 0))
+        yAxisNode.localTranslate(by: SCNVector3(x: 0, y: Float(0.15 * weight), z: 0))
         yAxisNode.eulerAngles = SCNVector3(Float.pi / 2, 0, 0)
-        let zAxisGeometry = SCNBox(width: 0.001, height: 0.001 * factor, length: 0.30 * factor, chamferRadius: 0)
+        let zAxisGeometry = SCNBox(width: 0.001, height: 0.001 * weight, length: 0.30 * weight, chamferRadius: 0)
         let zAxisNode = SCNNode(geometry: zAxisGeometry)
         zAxisNode.geometry?.materials.first?.diffuse.contents = UIColor.blue
-        zAxisNode.localTranslate(by: SCNVector3(x: 0, y: 0, z: Float(0.15 * factor)))
+        zAxisNode.localTranslate(by: SCNVector3(x: 0, y: 0, z: Float(0.15 * weight)))
 
         originNode.addChildNode(xAxisNode)
         originNode.addChildNode(yAxisNode)

@@ -52,6 +52,9 @@ internal class ARViewController: UIViewController {
         scene.addGestureRecognizer(tapGestureRecognizer)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(recognizer:)))
         scene.addGestureRecognizer(longPressRecognizer)
+
+        scene.autoenablesDefaultLighting = true
+        scene.automaticallyUpdatesLighting = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

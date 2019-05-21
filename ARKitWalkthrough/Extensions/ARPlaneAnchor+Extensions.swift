@@ -21,7 +21,7 @@ extension ARPlaneAnchor {
         let width = CGFloat(self.extent.x)
         let height = CGFloat(self.extent.z)
         let plane = SCNPlane(width: width, height: height)
-        plane.materials.first?.diffuse.contents = UIColor.lightGray.withAlphaComponent(0.2)
+        plane.materials.first?.diffuse.contents = UIColor.lightGray.withAlphaComponent(0)
 
         let planeNode = SCNNode(geometry: plane)
         let x = CGFloat(self.center.x)

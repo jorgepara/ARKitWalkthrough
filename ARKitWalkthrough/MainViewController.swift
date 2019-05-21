@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
 
         view.addSubview(stackStates)
         NSLayoutConstraint.activate([
-            stackStates.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.buttonLeftMargin),
+            stackStates.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.buttonLeftMargin),
             stackStates.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.buttonVerticalMargin),
             stackStates.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Constants.buttonVerticalMargin),
             stackStates.widthAnchor.constraint(equalToConstant: Constants.buttonSize)
