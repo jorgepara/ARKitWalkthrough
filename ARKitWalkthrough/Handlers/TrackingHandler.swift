@@ -30,7 +30,7 @@ internal class TrackingHandler: ARHandler {
 
         sceneUpdateQueue?.async { [weak self] in
             guard let self = self else { return }
-            let nodeAndPlayer = self.createVideo(forReferenceImage: imageAnchor.referenceImage, withVideoName: "cognizant_spain.mp4")
+            let nodeAndPlayer = self.createVideo(forReferenceImage: imageAnchor.referenceImage, withVideoName: "How Digital Can Bring Buildings To Life  Cognizant.mp4")
             nodeAndPlayer.videoPlayer.play()
             node.addChildNode(nodeAndPlayer.videoNode)
         }

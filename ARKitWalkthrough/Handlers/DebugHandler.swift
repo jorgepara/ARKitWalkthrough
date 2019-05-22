@@ -27,7 +27,7 @@ internal class DebugHandler: ARHandler {
 
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
 
-        let planeNode = planeAnchor.nodeRepresentation()
+        let planeNode = planeAnchor.nodeRepresentation(withAlpha: 0.2)
 
         sceneUpdateQueue?.async {
             node.addChildNode(planeNode)

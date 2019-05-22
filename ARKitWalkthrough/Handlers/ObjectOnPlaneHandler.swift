@@ -54,7 +54,7 @@ internal class ObjectOnPlaneHandler: ARHandler {
 
         playgroundFound = true
 
-        let planeNode = planeAnchor.nodeRepresentation()
+        let planeNode = planeAnchor.nodeRepresentation(withAlpha: 0)
         playgroundNode = planeNode
 
         sceneUpdateQueue?.async { [weak self] in

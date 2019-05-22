@@ -17,6 +17,7 @@
 		352A496F2244C66600E2E0CB /* ARKitWalkthroughTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A496E2244C66600E2E0CB /* ARKitWalkthroughTests.swift */; };
 		352A497B2244C6A100E2E0CB /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A497A2244C6A100E2E0CB /* ARKit.framework */; };
 		352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugHandler.swift */; };
+		3544E57322951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3544E57222951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 */; };
 		356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */; };
 		356B8C0C228D1D420077F342 /* CoordinateSpacesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */; };
 		356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */; };
@@ -27,7 +28,6 @@
 		356BA8FD2292E8450089FCBA /* CupSceneAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 356BA8FC2292E8450089FCBA /* CupSceneAssets.scnassets */; };
 		35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC8992228BC9D0009D80AC /* MatricesHandler.swift */; };
 		35E1000E2271EAC000BBBD28 /* TrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */; };
-		35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */; };
 		35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +56,7 @@
 		352A49702244C66600E2E0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		352A497A2244C6A100E2E0CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		352A497C2244C98200E2E0CB /* DebugHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHandler.swift; sourceTree = "<group>"; };
+		3544E57222951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How Digital Can Bring Buildings To Life  Cognizant.mp4"; sourceTree = "<group>"; };
 		356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARPlaneAnchor+Extensions.swift"; sourceTree = "<group>"; };
 		356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateSpacesHandler.swift; sourceTree = "<group>"; };
 		356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectOnPlaneHandler.swift; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		356BA8FC2292E8450089FCBA /* CupSceneAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = CupSceneAssets.scnassets; sourceTree = "<group>"; };
 		35AC8992228BC9D0009D80AC /* MatricesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesHandler.swift; sourceTree = "<group>"; };
 		35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingHandler.swift; sourceTree = "<group>"; };
-		35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cognizant_spain.mp4; sourceTree = "<group>"; };
 		35E1001322721E5700BBBD28 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,7 +156,7 @@
 		35E100112271ED8100BBBD28 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				35E1000F2271ED4F00BBBD28 /* cognizant_spain.mp4 */,
+				3544E57222951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -270,9 +270,9 @@
 			files = (
 				356B8C12228DAF310077F342 /* scene.scnassets in Resources */,
 				352A49642244C66600E2E0CB /* LaunchScreen.storyboard in Resources */,
-				35E100102271ED4F00BBBD28 /* cognizant_spain.mp4 in Resources */,
 				352A49612244C66600E2E0CB /* Assets.xcassets in Resources */,
 				356BA8FD2292E8450089FCBA /* CupSceneAssets.scnassets in Resources */,
+				3544E57322951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 in Resources */,
 				352A495F2244C66400E2E0CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,7 +477,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -496,7 +496,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
