@@ -27,7 +27,7 @@ import Foundation
 import ARKit
 
 /// AR handler for showcase of debug options
-internal class DebugHandler: ARHandler {
+internal class DebugHandler: ARSceneDelegate {
 
     lazy var configuration: ARConfiguration = {
         let configuration = ARWorldTrackingConfiguration()

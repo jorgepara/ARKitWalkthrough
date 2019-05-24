@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		352394A0226F1913000D880A /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523949F226F1913000D880A /* ARViewController.swift */; };
-		352394A2226F21A3000D880A /* ARHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A1226F21A3000D880A /* ARHandler.swift */; };
+		352394A2226F21A3000D880A /* ARSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A1226F21A3000D880A /* ARSceneDelegate.swift */; };
 		352394A4226F244C000D880A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352394A3226F244C000D880A /* MainViewController.swift */; };
 		352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A49592244C66400E2E0CB /* AppDelegate.swift */; };
 		352A495F2244C66400E2E0CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352A495D2244C66400E2E0CB /* Main.storyboard */; };
@@ -18,6 +18,7 @@
 		352A497B2244C6A100E2E0CB /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A497A2244C6A100E2E0CB /* ARKit.framework */; };
 		352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A497C2244C98200E2E0CB /* DebugHandler.swift */; };
 		3544E57322951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3544E57222951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 */; };
+		3544E5772297CFA00092798D /* ARGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544E5762297CFA00092798D /* ARGestureDelegate.swift */; };
 		356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */; };
 		356B8C0C228D1D420077F342 /* CoordinateSpacesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */; };
 		356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */; };
@@ -43,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		3523949F226F1913000D880A /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
-		352394A1226F21A3000D880A /* ARHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARHandler.swift; sourceTree = "<group>"; };
+		352394A1226F21A3000D880A /* ARSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSceneDelegate.swift; sourceTree = "<group>"; };
 		352394A3226F244C000D880A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		352A49562244C66400E2E0CB /* ARKitWalkthrough.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitWalkthrough.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		352A49592244C66400E2E0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		352A497A2244C6A100E2E0CB /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		352A497C2244C98200E2E0CB /* DebugHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHandler.swift; sourceTree = "<group>"; };
 		3544E57222951C650092798D /* How Digital Can Bring Buildings To Life  Cognizant.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How Digital Can Bring Buildings To Life  Cognizant.mp4"; sourceTree = "<group>"; };
+		3544E5762297CFA00092798D /* ARGestureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGestureDelegate.swift; sourceTree = "<group>"; };
 		356B8C09228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARPlaneAnchor+Extensions.swift"; sourceTree = "<group>"; };
 		356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateSpacesHandler.swift; sourceTree = "<group>"; };
 		356B8C0D228D1DDC0077F342 /* ObjectOnPlaneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectOnPlaneHandler.swift; sourceTree = "<group>"; };
@@ -174,7 +176,8 @@
 		35E100152272DBEE00BBBD28 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				352394A1226F21A3000D880A /* ARHandler.swift */,
+				352394A1226F21A3000D880A /* ARSceneDelegate.swift */,
+				3544E5762297CFA00092798D /* ARGestureDelegate.swift */,
 				352A497C2244C98200E2E0CB /* DebugHandler.swift */,
 				35E1000D2271EAC000BBBD28 /* TrackingHandler.swift */,
 				356B8C0B228D1D420077F342 /* CoordinateSpacesHandler.swift */,
@@ -292,7 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35E1001422721E5700BBBD28 /* UIColor+Extensions.swift in Sources */,
-				352394A2226F21A3000D880A /* ARHandler.swift in Sources */,
+				352394A2226F21A3000D880A /* ARSceneDelegate.swift in Sources */,
 				356B8C0A228BEBF10077F342 /* ARPlaneAnchor+Extensions.swift in Sources */,
 				352A497D2244C98200E2E0CB /* DebugHandler.swift in Sources */,
 				352394A0226F1913000D880A /* ARViewController.swift in Sources */,
@@ -301,6 +304,7 @@
 				352A495A2244C66400E2E0CB /* AppDelegate.swift in Sources */,
 				352394A4226F244C000D880A /* MainViewController.swift in Sources */,
 				356B8C0E228D1DDC0077F342 /* ObjectOnPlaneHandler.swift in Sources */,
+				3544E5772297CFA00092798D /* ARGestureDelegate.swift in Sources */,
 				356B8C10228D1FD20077F342 /* InteractionsHandler.swift in Sources */,
 				356B8C17228E829A0077F342 /* UIStackView+Extensions.swift in Sources */,
 				35AC8993228BC9D0009D80AC /* MatricesHandler.swift in Sources */,

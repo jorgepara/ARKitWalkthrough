@@ -27,14 +27,14 @@ import Foundation
 import SceneKit
 
 /// Handler for showing basic interaction with a virtual object and how we can give visual feedback to the user
-internal class InteractionsHandler: ObjectOnPlaneHandler {
+internal class InteractionsHandler: ObjectOnPlaneHandler, ARGestureDelegate {
 
     private static let verticalGapPressed: Float =  0.01
     private static let motionAnimationDuration = 0.5
 
     private var cupInMotion = false
 
-    override func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {
+    func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {
         if !cupInMotion && !results.map({ return $0.node }).filter({ $0.name?.starts(with: "Circle") ?? false }).isEmpty {
             cupInMotion = true
             SCNTransaction.animationDuration = InteractionsHandler.motionAnimationDuration
@@ -42,14 +42,14 @@ internal class InteractionsHandler: ObjectOnPlaneHandler {
             cupNode.localTranslate(by: SCNVector3(0, InteractionsHandler.verticalGapPressed, 0))
         }
     }
-    override func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {
+    func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {
         if cupInMotion, let playgroundResult = results.filter({ $0.node == playgroundNode }).first {
             let hitIntersection = playgroundResult.localCoordinates
             SCNTransaction.animationDuration = InteractionsHandler.motionAnimationDuration
             cupNode.position = SCNVector3(x: hitIntersection.x, y: InteractionsHandler.verticalGapPressed, z: -hitIntersection.y)
         }
     }
-    override func longPressedFinished() {
+    func longPressedFinished() {
         if cupInMotion {
             cupInMotion = false
             cupNode.opacity = 1

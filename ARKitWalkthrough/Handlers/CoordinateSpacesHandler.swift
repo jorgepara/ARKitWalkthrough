@@ -29,7 +29,7 @@ import SceneKit
 
 /// Handler for demostrating the different coordinate spaces of different objects
 /// and how transformations in a parent node affect the child nodes
-internal class CoordinateSpacesHandler: ARHandler {
+internal class CoordinateSpacesHandler: ARSceneDelegate {
 
     lazy var configuration: ARConfiguration = {
         let configuration = ARWorldTrackingConfiguration()

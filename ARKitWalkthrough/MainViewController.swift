@@ -117,7 +117,7 @@ class MainViewController: UIViewController {
     }
 
     /// When updating the state, the background color of the buttons representing the states
-    /// is updated to highlight only the new state, and a new handler is created and injected
+    /// is updated to highlight only the new state, and a new pair of delegates is created and injected
     /// in the AR view controller
     private func updateState(_ state: State) {
         stackStates.arrangedSubviews.filter {$0 is UIButton}.forEach {
@@ -128,11 +128,13 @@ class MainViewController: UIViewController {
             }
         }
 
-        arViewController.handler = makeHandlerFor(state: state)
+        let delegates = makeDelegatesFor(state: state)
+        arViewController.sceneDelegate = delegates.sceneDelegate
+        arViewController.gestureDelegate = delegates.gestureDelegate
 
         stackSupplementaryViews.removeAllArrangedSubviews()
         // TODO: this is a form of feature envy.
-        arViewController.handler?.supplementaryOnScreenViews()?.forEach { stackSupplementaryViews.addArrangedSubview($0) }
+        arViewController.sceneDelegate?.supplementaryOnScreenViews()?.forEach { stackSupplementaryViews.addArrangedSubview($0) }
 
         view.bringSubviewToFront(stackStates)
         view.bringSubviewToFront(stackSupplementaryViews)
@@ -152,18 +154,19 @@ internal extension MainViewController {
 
     static let InitialState: State = .Debug
 
-    func makeHandlerFor(state: State) -> ARHandler? {
+    func makeDelegatesFor(state: State) -> (sceneDelegate: ARSceneDelegate?, gestureDelegate: ARGestureDelegate?) {
         switch state {
         case .Debug:
-            return DebugHandler()
+            return (DebugHandler(), nil)
         case .Tracking:
-            return TrackingHandler()
+            return (TrackingHandler(), nil)
         case .CoordinateSpaces:
-            return CoordinateSpacesHandler()
+            return (CoordinateSpacesHandler(), nil)
         case .Matrices:
-            return MatricesHandler()
+            return (MatricesHandler(), nil)
         case .Interactions:
-            return InteractionsHandler()
+            let handler = InteractionsHandler()
+            return (handler, handler)
         }
     }
 

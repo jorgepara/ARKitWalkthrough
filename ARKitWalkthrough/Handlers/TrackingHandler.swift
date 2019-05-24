@@ -27,7 +27,7 @@ import Foundation
 import ARKit
 
 /// AR handler for showcase of tracking of an image
-internal class TrackingHandler: ARHandler {
+internal class TrackingHandler: ARSceneDelegate {
 
     lazy var configuration: ARConfiguration = {
         let configuration = ARWorldTrackingConfiguration()

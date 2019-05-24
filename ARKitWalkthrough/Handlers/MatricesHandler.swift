@@ -144,7 +144,6 @@ internal class MatricesHandler: ObjectOnPlaneHandler {
     private func applyMatrix(_ matrix: simd_float4x4) {
         SCNTransaction.animationDuration = 1
         cupNode.simdTransform = matrix * cupNode.simdTransform
-        print(cupNode.simdTransform)
     }
 
 }

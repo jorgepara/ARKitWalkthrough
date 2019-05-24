@@ -28,7 +28,7 @@ import ARKit
 
 /// Base handler for find a plane and adding a virtual object, on top of that
 /// other concepts will be demostrated
-internal class ObjectOnPlaneHandler: ARHandler {
+internal class ObjectOnPlaneHandler: ARSceneDelegate {
 
     lazy var configuration: ARConfiguration = {
         let configuration = ARWorldTrackingConfiguration()
@@ -82,9 +82,4 @@ internal class ObjectOnPlaneHandler: ARHandler {
     }
 
     func supplementaryOnScreenViews() -> [UIView]? { return nil }
-    func tappedWithHitTestResults(_ results: [SCNHitTestResult]) {}
-    func longPressedStartedWithHitTestResults(_ results: [SCNHitTestResult]) {}
-    func longPressedChangedWithHitTestResults(_ results: [SCNHitTestResult], onScreenTranslation traslation: CGPoint) {}
-    func longPressedFinished() {}
-
 }

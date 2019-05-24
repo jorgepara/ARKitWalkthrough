@@ -28,7 +28,7 @@ import UIKit
 import ARKit
 
 /// View controller for AR scene, it will manage the basics of the lifecycle of the scene
-/// and will rely on a handler for the configuration and event management
+/// and will rely on delegates for the configuration and event management
 internal class ARViewController: UIViewController {
 
     private var lastTraslationPoint: CGPoint?
@@ -36,23 +36,25 @@ internal class ARViewController: UIViewController {
     private lazy var scene: ARSCNView = {
         let scene = ARSCNView(frame: .zero)
         scene.translatesAutoresizingMaskIntoConstraints = false
-        scene.debugOptions = handler?.debugOptions ?? []
+        scene.debugOptions = sceneDelegate?.debugOptions ?? []
         scene.delegate = self
         return scene
     }()
 
-    // This dispatch queue can be used by the handlers for updating the scene
+    // This dispatch queue can be used by the delegates for updating the scene
     private let sceneUpdateQueue = DispatchQueue(label: "SerialSceneKitQueue")
 
-    var handler: ARHandler? {
+    var sceneDelegate: ARSceneDelegate? {
         didSet {
-            if var handler = self.handler {
-                handler.sceneUpdateQueue = sceneUpdateQueue
-                scene.debugOptions = handler.debugOptions
-                scene.session.run(handler.configuration, options: handler.sessionOptions)
+            if var sceneDelegate = self.sceneDelegate {
+                sceneDelegate.sceneUpdateQueue = sceneUpdateQueue
+                scene.debugOptions = sceneDelegate.debugOptions
+                scene.session.run(sceneDelegate.configuration, options: sceneDelegate.sessionOptions)
             }
         }
     }
+
+    var gestureDelegate: ARGestureDelegate?
 
     // MARK: - Lifecycle
 
@@ -77,8 +79,8 @@ internal class ARViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let handler = self.handler {
-            scene.session.run(handler.configuration, options: handler.sessionOptions)
+        if let sceneDelegate = self.sceneDelegate {
+            scene.session.run(sceneDelegate.configuration, options: sceneDelegate.sessionOptions)
         }
     }
 
@@ -92,7 +94,7 @@ internal class ARViewController: UIViewController {
         let location = recognizer.location(in: scene)
         let hitTestResults = scene.hitTest(location)
         if !hitTestResults.isEmpty {
-            handler?.tappedWithHitTestResults(hitTestResults)
+            gestureDelegate?.tappedWithHitTestResults(hitTestResults)
         }
     }
     @objc func longPressed(recognizer: UILongPressGestureRecognizer) {
@@ -101,14 +103,14 @@ internal class ARViewController: UIViewController {
         if recognizer.state == .began {
             if !hitTestResults.isEmpty {
                 lastTraslationPoint = location
-                handler?.longPressedStartedWithHitTestResults(hitTestResults)
+                gestureDelegate?.longPressedStartedWithHitTestResults(hitTestResults)
             }
         } else if recognizer.state == .changed {
             let traslation = CGPoint(x: location.x - (lastTraslationPoint?.x ?? 0), y: location.y - (lastTraslationPoint?.y ?? 0))
             lastTraslationPoint = location
-            handler?.longPressedChangedWithHitTestResults(hitTestResults, onScreenTranslation: traslation)
+            gestureDelegate?.longPressedChangedWithHitTestResults(hitTestResults, onScreenTranslation: traslation)
         } else if recognizer.state == .ended {
-            handler?.longPressedFinished()
+            gestureDelegate?.longPressedFinished()
         }
     }
 }
@@ -116,10 +118,10 @@ internal class ARViewController: UIViewController {
 extension ARViewController: ARSCNViewDelegate {
 
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        handler?.anchorWasAdded(withAnchor: anchor, node: node)
+        sceneDelegate?.anchorWasAdded(withAnchor: anchor, node: node)
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        handler?.anchorWasUpdated(withAnchor: anchor, node: node)
+        sceneDelegate?.anchorWasUpdated(withAnchor: anchor, node: node)
     }
 }
